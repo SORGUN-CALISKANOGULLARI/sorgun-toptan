@@ -1,360 +1,217 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ürün Kataloğu</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #f2f4f7; color: #333; -webkit-tap-highlight-color: transparent; }
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:15px;
+}
 
-        /* Üst Menü Çubuğu */
-        header {
-            background-color: #1a252f;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .header-title { font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px; }
-        .menu-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.6rem;
-            cursor: pointer;
-            padding: 0 5px;
-        }
+.grid-container{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
 
-        /* Yan Menü (Drawer) */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: -280px;
-            width: 280px;
-            height: 100%;
-            background-color: white;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.2);
-            transition: left 0.3s ease-in-out;
-            z-index: 1000;
-            padding-top: 50px;
-        }
-        .sidebar.active { left: 0; }
-        .sidebar h3 { padding: 16px; border-bottom: 1px solid #eee; color: #1a252f; font-size: 1.1rem; }
-        .sidebar ul { list-style: none; }
-        .sidebar ul li a {
-            display: block;
-            padding: 14px 16px;
-            color: #444;
-            text-decoration: none;
-            border-bottom: 1px solid #f5f5f5;
-            font-size: 0.95rem;
-            transition: background 0.2s;
-        }
-        .sidebar ul li a:active { background-color: #e4e7eb; }
-        
-        /* Karartma Perdesi */
-        .overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 900;
-            backdrop-filter: blur(2px);
-        }
-        .overlay.active { display: block; }
+@media(min-width:700px){
+.grid-container{
+grid-template-columns:repeat(3,1fr);
+}
+}
 
-        /* Ana İçerik Alanı */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 12px;
-        }
+@media(min-width:1000px){
+.grid-container{
+grid-template-columns:repeat(4,1fr);
+}
+}
 
-        /* Mobil Uyumlu 2'lü Grid Yapısı */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
+.card{
 
-        .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
-            overflow: hidden;
-            text-align: center;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 6px;
-            aspect-ratio: 1/1;
-            border: 1px solid #eaeaea;
-            transition: transform 0.1s, background-color 0.1s;
-        }
-        .card:active { transform: scale(0.96); background-color: #fafafa; }
-        .card img {
-            max-width: 100%;
-            max-height: 80px;
-            object-fit: contain;
-            margin-bottom: 50px;
-        }
-        .card span {
-            font-size: 0.75rem;
-            color: #333;
-            font-weight: bold;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
+background:#fff;
 
-        /* Ürün Listeleme Ekranı */
-        .view-section { display: none; }
-        .view-section.active { display: block; }
+border-radius:18px;
 
-        .back-btn {
-            background: #1a252f;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-bottom: 12px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
+padding:18px;
 
-        .product-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .product-item {
-            background: white;
-            padding: 14px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border: 1px solid #eaeaea;
-        }
-        .product-item h4 { color: #1a252f; font-size: 1rem; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
-        .product-item p { color: #666; font-size: 0.85rem; line-height: 1.4; }
-        .brand-badge { font-size: 0.7rem; background: #eef2f7; color: #555; padding: 2px 6px; border-radius: 4px; font-weight: normal; }
-    </style>
-</head>
-<body>
+cursor:pointer;
 
-    <!-- Üst Bar -->
-    <header>
-        <button class="menu-btn" onclick="toggleMenu()">☰</button>
-        <div class="header-title" id="pageTitle">KATEGORİLER</div>
-        <div style="width: 25px;"></div>
-    </header>
+display:flex;
 
-    <!-- Yan Menü (Kategoriler / Çeşitler) -->
-    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-    <div class="sidebar" id="sidebar">
-        <h3>Ürün Çeşitleri</h3>
-        <ul>
-        <ul>
-            <li><a href="#" onclick="filterByCategory('Zeytinler')">Zeytinler</a></li>
-            <li><a href="#" onclick="filterByCategory('Şarküteri')">Şarküteri</a></li>
-            <li><a href="#" onclick="filterByCategory('Peynir Grubu')">Süt Ürünleri</a></li>
-            <li><a href="#" onclick="filterByCategory('İçecekler')">İçecekler</a></li>
-            <li><a href="#" onclick="filterByCategory('Sirkeler')">Sirkeler</a></li>
-            <li><a href="#" onclick="filterByCategory('Salçalar')">Salçalar & Soslar</a></li>
-            <li><a href="#" onclick="filterByCategory('Bal')">Bal & Kahve Çeşitleri</a></li>
-            <li><a href="#" onclick="filterByCategory('Turşular')">Turşular</a></li>
-            <li><a href="#" onclick="filterByCategory('Makarnalar')">Makarnalar</a></li>
-            <li><a href="#" onclick="filterByCategory('Bakliyat')">Bakliyat</a></li>
-            <li><a href="#" onclick="filterByCategory('Yufkalar')">Yufka & Tatlı Çeşitleri</a></li> 
-            <li><a href="#" onclick="filterByCategory('Catering Ürünler')">Catering</a></li>
-            <li><a href="#" onclick="filterByCategory('Mutfak Gereçleri')">Mutfak Araç Gereçleri</a></li>
-            <li><a href="#" onclick="filterByCategory('Evcil Hayvan Maması')">Kedi, Köpek, Kuş Maması</a></li>
-            <li><a href="#" onclick="filterByCategory('Temizlik Ürünleri')">Temizlik Ürürnleri</a></li>    
-            <li><a href="#" onclick="showHome()">Tüm Markalar</a></li>
-        </ul>
-        </ul>          
-    </div>                
+flex-direction:column;
 
-    <!-- Ana İçerik -->
-    <div class="container">
+justify-content:center;
 
-        <!-- 1. Bölüm: Marka Listesi (Ana Sayfa) -->
-   <div id="homeView" class="view-section active">
-    <div class="grid-container">
-        <!-- Marka Kartı 1 (Logolu Örnek) -->
-       <div class="card" onclick="openBrand('Aytaç')">
-              <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/aytac.jpeg" alt="Ancara">
-              <span>Aytaç</span>
-        </div>
-        <!-- Marka Kartı 2 -->
-        <div class="card" onclick="openBrand('Ekici')">
-             <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/123456.png" alt="Ancara">
-            <span>Ekici</span>
-          </div>
-           <!-- Marka Kartı 3 -->
-          <div class="card" onclick="openBrand('Ece')">
-              <span>Ece</span>
-            <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece.jpeg" alt="Ancara">
-         </div>
-           <!-- Marka Kartı 4 -->
-           <div class="card" onclick="openBrand('Öncü')">
-             <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-            <span>ÖNCÜ</span>
-                <!-- Marka Kartı 5 -->
-         <div class="card" onclick="openBrand('Ekici')">
-              <span>EKİCİ</span>
-            <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-          </div>    <!-- Marka Kartı 6 -->
-         <div class="card" onclick="openBrand('Ekici')">
-              <span>EKİCİ</span>
-               <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-          </div>    <!-- Marka Kartı 7 -->
-         <div class="card" onclick="openBrand('Ekici')">
-               <span>EKİCİ</span>
-             <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-          </div>    <!-- Marka Kartı 8 -->
-          <div class="card" onclick="openBrand('Ekici')">
-               <span>EKİCİ</span>
-            <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-           </div>    <!-- Marka Kartı 9 -->
-         <div class="card" onclick="openBrand('Ekici')">
-               <span>EKİCİ</span>
-              <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-           </div>    <!-- Marka Kartı 10 -->
-          <div class="card" onclick="openBrand('Ekici')">
-            <span>EKİCİ</span>
-              <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-          </div>    <!-- Marka Kartı 11 -->
-         <div class="card" onclick="openBrand('Ekici')">
-               <span>EKİCİ</span>
-             <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-           </div>    <!-- Marka Kartı 12 -->
-           <div class="card" onclick="openBrand('Ekici')">
-               <span>EKİCİ</span>
-              <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-           </div>    <!-- Marka Kartı 13 -->
-         <div class="card" onclick="openBrand('Ekici')">
-               <span>EKİCİ</span>
-            <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-           </div>    <!-- Marka Kartı 14 -->
-           <div class="card" onclick="openBrand('Ekici')">
-               <span>EKİCİ</span>
-            <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/JNGKY007.jpeg" alt="Ancara">
-           </div>    <!-- Marka Kartı 15 -->
-          <div class="card" onclick="openBrand('Ekici')">
-               <span>EKİCİ</span>
-                   
-                </div>
-                </div>
-            </div>
-        </div>
+align-items:center;
 
-        <!-- 2. Bölüm: Detay Sayfası -->
-        <div id="detailView" class="view-section">
-            <button class="back-btn" onclick="showHome()">← Geri Dön</button>
-            <div class="product-list" id="productList"></div>
-        </div>
+transition:.25s;
+
+box-shadow:0 5px 18px rgba(0,0,0,.12);
+
+border:1px solid #ececec;
+
+}
+
+.card:hover{
+
+transform:translateY(-6px);
+
+}
+
+.card img{
+
+width:100%;
+
+height:160px;
+
+object-fit:contain;
+
+margin-bottom:12px;
+
+}
+
+.card span{
+
+font-size:18px;
+
+font-weight:bold;
+
+}<header>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<div class="header-title" id="pageTitle">
+
+SORGUN TOPTAN
+
+</div>
+
+<div>
+
+<input
+id="searchBox"
+type="text"
+placeholder="Ürün Ara..."
+onkeyup="searchProducts()">
+
+</div>
+
+</header>
+#searchBox{
+
+width:170px;
+
+padding:8px;
+
+border-radius:8px;
+
+border:none;
+
+outline:none;
+
+font-size:15px;
+
+}
+<div id="homeView" class="view-section active">
+
+    <div class="grid-container" id="brandContainer">
 
     </div>
 
-    <script>
-        const database = {
-            brands: {
-                "Ancara": [
-                    {name: "Ancara Spagetti", desc: "Özel buğdaydan üretilmiş katkısız makarna.", category: "Makarnalar"},
-                    {name: "Ancara Burgu", desc: "Sosları mükemmel tutan özel kesim.", category: "Makarnalar"}
-                ],
-                "Duru": [
-                    {name: "Duru Pilavlık Bulgur", desc: "Doğal ve lezzetli baş başı bulgur.", category: "Bakliyat"},
-                    {name: "Duru Haşlanmış Nohut", desc: "Pratik kapakta doğal haşlanmış nohut.", category: "Bakliyat"}
-                ],
-                "Ekici": [
-                    {name: "Ekici Tam Yağlı Beyaz Peynir", desc: "Geleneksel lezzet inek peyniri.", category: "Süt Ürünleri"},
-                    {name: "Ekici Süzme Peynir", desc: "Yumuşacık kıvamıyla kahvaltınızın vazgeçilmezi.", category: "Süt Ürünleri"}
-                ],
-                "Öncü": [
-                    {name: "Öncü Domates Salçası", desc: "Güneşte kurutulmuş olgun domateslerden.", category: "Soslar"},
-                    {name: "Öncü Biber Salçası Acı", desc: "Geleneksel ev yapımı tadında acı biber salçası.", category: "Soslar"},
-                    {name: "Öncü Üzüm Sirkesi", desc: "Doğal fermantasyon üzüm sirkesi.", category: "Sirkeler"}
-                ]
-            }
-        };
+</div>
+<div class="card" onclick="openBrand('Aytaç')">
 
-        function toggleMenu() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('overlay').classList.toggle('active');
-        }
+<img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/aytac.jpeg">
 
-        function showHome() {
-            document.getElementById('homeView').classList.add('active');
-            document.getElementById('detailView').classList.remove('active');
-            document.getElementById('pageTitle').innerText = "KATEGORİLER";
-            document.getElementById('sidebar').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-            window.scrollTo(0, 0);
-        }
+<span>AYTAÇ</span>
 
-        function openBrand(brandName) {
-            document.getElementById('homeView').classList.remove('active');
-            document.getElementById('detailView').classList.add('active');
-            document.getElementById('pageTitle').innerText = brandName.toUpperCase();
+</div>
+const brands = [
 
-            let listHTML = "";
-            let products = database.brands[brandName] || [];
-            
-            if(products.length === 0) {
-                listHTML = "<p style='text-align:center; padding:20px; color:#666;'>Bu markaya ait ürün bulunamadı.</p>";
-            } else {
-                products.forEach(p => {
-                    listHTML += `<div class="product-item">
-                        <h4>${p.name}</h4>
-                        <p>${p.desc}</p>
-                    </div>`;
-                });
-            }
-            document.getElementById('productList').innerHTML = listHTML;
-            window.scrollTo(0, 0);
-        }
+{
+name:"Aytaç",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/aytac.jpeg"
+},
 
-        function filterByCategory(categoryName) {
-            document.getElementById('homeView').classList.remove('active');
-            document.getElementById('detailView').classList.add('active');
-            document.getElementById('pageTitle').innerText = categoryName.toUpperCase();
-            toggleMenu();
+{
+name:"Ekici",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/123456.png"
+},
 
-            let listHTML = "";
-            let matchedProducts = [];
+{
+name:"Yeni Ürün",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp"
+},
 
-            for (let brand in database.brands) {
-                database.brands[brand].forEach(p => {
-                    if(p.category === categoryName) {
-                        matchedProducts.push({...p, brand: brand});
-                    }
-                });
-            }
+{
+name:"Yağız Efe",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ya%C4%9F%C4%B1zefe.jpg"
+},
 
-            if(matchedProducts.length === 0) {
-                listHTML = "<p style='text-align:center; padding:20px; color:#666;'>Bu kategoride henüz ürün bulunmuyor.</p>";
-            } else {
-                matchedProducts.forEach(p => {
-                    listHTML += `<div class="product-item">
-                        <h4>${p.name} <span class="brand-badge">${p.brand}</span></h4>
-                        <p>${p.desc}</p>
-                    </div>`;
-                });
-            }
-            document.getElementById('productList').innerHTML = listHTML;
-            window.scrollTo(0, 0);
-        }
-    </script>
-</body>
-</html>
+{
+name:"Kral",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kral.jpg"
+},
+
+{
+name:"Kavak",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kavak.jpg"
+},
+
+{
+name:"Images",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/images.png"
+},
+
+{
+name:"Duru",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/duru.jpeg"
+},
+
+{
+name:"Angara",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/angara.jpeg"
+},
+
+{
+name:"Akçay",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/akcay.jpeg"
+},
+
+{
+name:"VI",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/VI.jpeg"
+},
+
+{
+name:"ChatGPT",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ChatGPT%20Image%201%20A%C4%9Fu%202026%2019_40_10.png"
+},
+
+{
+name:"1234",
+image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/1234.png"
+}
+
+];
+function loadBrands(){
+
+let html="";
+
+brands.forEach(function(b){
+
+html+=`
+
+<div class="card" onclick="openBrand('${b.name}')">
+
+<img src="${b.image}">
+
+<span>${b.name}</span>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("brandContainer").innerHTML=html;
+
+}
+
+loadBrands();
