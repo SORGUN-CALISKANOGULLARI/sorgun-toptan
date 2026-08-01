@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -9,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -19,10 +17,10 @@ font-family:Arial,Helvetica,sans-serif;
 
 body{
 background:#f4f5f7;
+overflow-x: hidden;
 }
 
 header{
-
 position:sticky;
 top:0;
 z-index:999;
@@ -33,120 +31,255 @@ align-items:center;
 justify-content:space-between;
 padding:0 18px;
 box-shadow:0 3px 10px rgba(0,0,0,.20);
-
 }
 
 .menuBtn{
-
 font-size:40px;
 color:white;
 cursor:pointer;
-
+user-select:none;
 }
 
 .logoTitle{
-
 font-size:30px;
 font-weight:bold;
 color:white;
 letter-spacing:1px;
-
+cursor:pointer;
+user-select:none;
 }
 
 .searchBtn{
-
 font-size:34px;
 color:white;
 cursor:pointer;
-
+user-select:none;
 }
 
 .container{
-
 width:100%;
 max-width:1400px;
 margin:auto;
 padding:20px;
-
 }
 
 .brandGrid{
-
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:22px;
-
 }
 
 .brandCard{
-
 background:white;
 height:290px;
 border-radius:18px;
 box-shadow:0 5px 15px rgba(0,0,0,.12);
-
 display:flex;
 flex-direction:column;
-
 justify-content:center;
 align-items:center;
-
 cursor:pointer;
-
 transition:.25s;
-
 }
 
 .brandCard:hover{
-
 transform:scale(1.03);
-
 }
 
 .brandCard img{
-
 width:90%;
 height:210px;
 object-fit:contain;
-
 }
 
 .brandCard h3{
-
 margin-top:10px;
 font-size:20px;
 color:#333;
-
 }
 
-</style>
+/*========================*/
+/* ARAMA MODALI */
+/*========================*/
+.searchModal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.85);
+z-index: 2000;
+display: none;
+flex-direction: column;
+padding: 20px;
+}
 
+.searchHeader {
+display: flex;
+align-items: center;
+gap: 15px;
+margin-bottom: 20px;
+}
+
+.searchInput {
+width: 100%;
+padding: 15px 20px;
+font-size: 18px;
+border-radius: 12px;
+border: none;
+outline: none;
+background: #fff;
+}
+
+.closeSearch {
+color: white;
+font-size: 32px;
+cursor: pointer;
+user-select: none;
+}
+
+.searchResults {
+overflow-y: auto;
+flex: 1;
+}
+
+.searchItemCard {
+background: white;
+padding: 15px;
+border-radius: 10px;
+margin-bottom: 10px;
+font-size: 17px;
+color: #333;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.searchItemCard span {
+font-size: 13px;
+background: #1c2430;
+color: white;
+padding: 4px 8px;
+border-radius: 6px;
+}
+
+/*========================*/
+/* HAMBURGER MENÜ & KAYDIRMA */
+/*========================*/
+.overlay{
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+display:none;
+z-index:999;
+}
+
+.sidebar{
+position:fixed;
+top:0;
+left:-320px;
+width:300px;
+height:100%;
+background:#fff;
+box-shadow:5px 0 20px rgba(0,0,0,.25);
+transition:transform .3s ease;
+overflow-y:auto;
+z-index:1000;
+}
+
+.sidebar.active{
+left:0;
+}
+
+.overlay.active{
+display:block;
+}
+
+.menuHeader{
+height:70px;
+background:#1c2430;
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+.sidebar ul{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.sidebar li{
+padding:18px 20px;
+font-size:18px;
+border-bottom:1px solid #ececec;
+cursor:pointer;
+transition:.2s;
+}
+
+.sidebar li:hover{
+background:#f2f2f2;
+padding-left:30px;
+}
+
+.sidebar li:active{
+background:#e5e5e5;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-
-<div class="menuBtn">☰</div>
-
-<div class="logoTitle">
-
-SORGUN TOPTAN
-
-</div>
-
-<div class="searchBtn">
-
-🔍
-
-</div>
-
+<div class="menuBtn" onclick="toggleMenu()">☰</div>
+<div class="logoTitle" onclick="showAllProducts()">SORGUN TOPTAN</div>
+<div class="searchBtn" onclick="openSearchModal()">🔍</div>
 </header>
 
+<!-- ARAMA PENCERESİ -->
+<div id="searchModal" class="searchModal">
+<div class="searchHeader">
+<input type="text" id="searchInput" class="searchInput" placeholder="Ürün veya marka ara..." oninput="handleSearch(this.value)">
+<div class="closeSearch" onclick="closeSearchModal()">✕</div>
+</div>
+<div id="searchResults" class="searchResults"></div>
+</div>
+
+<!-- KARARTMA -->
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+<!-- HAMBURGER MENÜ -->
+<div id="sidebar" class="sidebar">
+<div class="menuHeader">Ürün Grupları</div>
+<ul>
+<li onclick="filterByCategory('Zeytinler')">🫒 Zeytinler</li>
+<li onclick="filterByCategory('Şarküteri')">🥩 Şarküteri</li>
+<li onclick="filterByCategory('Peynir Grubu')">🧀 Süt Ürünleri</li>
+<li onclick="filterByCategory('İçecekler')">🥤 İçecekler</li>
+<li onclick="filterByCategory('Sirkeler')">🍾 Sirkeler</li>
+<li onclick="filterByCategory('Salçalar')">🍅 Salçalar & Soslar</li>
+<li onclick="filterByCategory('Bal')">🍯 Bal & Kahve</li>
+<li onclick="filterByCategory('Turşular')">🥒 Turşular</li>
+<li onclick="filterByCategory('Makarnalar')">🍝 Makarnalar</li>
+<li onclick="filterByCategory('Bakliyat')">🌾 Bakliyat</li>
+<li onclick="filterByCategory('Yufkalar')">🥟 Yufka & Tatlı</li>
+<li onclick="filterByCategory('Catering')">🍽 Catering</li>
+<li onclick="filterByCategory('Mutfak')">🍴 Mutfak Gereçleri</li>
+<li onclick="filterByCategory('Mama')">🐱 Evcil Hayvan Mamaları</li>
+<li onclick="filterByCategory('Temizlik')">🧴 Temizlik Ürünleri</li>
+<li onclick="showHome()">🏠 Tüm Markalar</li>
+</ul>
+</div>
+
 <div class="container">
-
 <div class="brandGrid">
-
 <div class="brandCard" onclick="openBrand('AYTAÇ')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/aytac.jpeg">
 <h3>AYTAÇ</h3>
@@ -162,364 +295,253 @@ SORGUN TOPTAN
 <h3>ECE</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('KAVAKLIDERE')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kavak.jpg">
 <h3>KAVAKLIDERE</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('ANCORA')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/1234.png">
 <h3>ANCORA</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('DURU')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/duru.jpeg">
 <h3>DURU</h3>
 </div>
 
-<div class="brandCard">
-<img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/angara.jpeg">
+<div class="brandCard" onclick="openBrand('ANGARA')">
+<img src="https://raw.githubusercontent.com/Sorgun-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/angara.jpeg">
 <h3>ANGARA</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('VERONELLİ')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/images.png">
 <h3>VERONELLİ</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('ÖNCÜ')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/WhatsApp%20Image%202026-05-13%20at%2008.58.36%20(1).jpeg">
 <h3>ÖNCÜ</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('YAĞIZ EFE')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ya%C4%9F%C4%B1zefe.jpg">
 <h3>YAĞIZ EFE</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('KRAL')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kral.jpg">
 <h3>KRAL</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('BAL & KAHVE')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ChatGPT%20Image%201%20A%C4%9Fu%202026%2019_40_10.png">
 <h3>BAL & KAHVE</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('CATERING')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/WhatsApp%20Image%202026-08-01%20at%2021.02.18.jpeg">
 <h3>CATERING</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('PEGALOS')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/WhatsApp%20Image%202026-08-01%20at%2021.02.31.jpeg">
 <h3>PEGALOS</h3>
 </div>
   
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('AKÇAY')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/akcay.jpeg">
 <h3>AKÇAY</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('VIORA')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/VI.jpeg">
 <h3>VIORA</h3>
 </div>
 
-<div class="brandCard">
+<div class="brandCard" onclick="openBrand('YENİ ÜRÜN')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp">
 <h3>YENİ ÜRÜN</h3>
 </div>
-
+</div>
 </div>
 
-</div>
-```
-```html
-<!-- KARARTMA -->
-<div id="overlay" class="overlay" onclick="closeMenu()"></div>
-
-<!-- HAMBURGER MENÜ -->
-
-<div id="sidebar" class="sidebar">
-
-<div class="menuHeader">
-
-Ürün Grupları
-
-</div>
-
-<ul>
-
-<li onclick="filterByCategory('Zeytinler')">🫒 Zeytinler</li>
-
-<li onclick="filterByCategory('Şarküteri')">🥩 Şarküteri</li>
-
-<li onclick="filterByCategory('Peynir Grubu')">🧀 Süt Ürünleri</li>
-
-<li onclick="filterByCategory('İçecekler')">🥤 İçecekler</li>
-
-<li onclick="filterByCategory('Sirkeler')">🍾 Sirkeler</li>
-
-<li onclick="filterByCategory('Salçalar')">🍅 Salçalar & Soslar</li>
-
-<li onclick="filterByCategory('Bal')">🍯 Bal & Kahve</li>
-
-<li onclick="filterByCategory('Turşular')">🥒 Turşular</li>
-
-<li onclick="filterByCategory('Makarnalar')">🍝 Makarnalar</li>
-
-<li onclick="filterByCategory('Bakliyat')">🌾 Bakliyat</li>
-
-<li onclick="filterByCategory('Yufkalar')">🥟 Yufka & Tatlı</li>
-
-<li onclick="filterByCategory('Catering')">🍽 Catering</li>
-
-<li onclick="filterByCategory('Mutfak')">🍴 Mutfak Gereçleri</li>
-
-<li onclick="filterByCategory('Mama')">🐱 Evcil Hayvan Mamaları</li>
-
-<li onclick="filterByCategory('Temizlik')">🧴 Temizlik Ürünleri</li>
-
-<li onclick="showHome()">🏠 Tüm Markalar</li>
-
-</ul>
-
-</div>
-```
-```css
-/*========================*/
-/* HAMBURGER MENÜ */
-/*========================*/
-
-.overlay{
-
-position:fixed;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.45);
-
-display:none;
-
-z-index:999;
-
-}
-
-.sidebar{
-
-position:fixed;
-
-top:0;
-
-left:-320px;
-
-width:300px;
-
-height:100%;
-
-background:#fff;
-
-box-shadow:5px 0 20px rgba(0,0,0,.25);
-
-transition:.35s;
-
-overflow-y:auto;
-
-z-index:1000;
-
-}
-
-.sidebar.active{
-
-left:0;
-
-}
-
-.overlay.active{
-
-display:block;
-
-}
-
-.menuHeader{
-
-height:70px;
-
-background:#1c2430;
-
-color:#fff;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:24px;
-
-font-weight:bold;
-
-letter-spacing:1px;
-
-}
-
-.sidebar ul{
-
-list-style:none;
-
-padding:0;
-
-margin:0;
-
-}
-
-.sidebar li{
-
-padding:18px 20px;
-
-font-size:18px;
-
-border-bottom:1px solid #ececec;
-
-cursor:pointer;
-
-transition:.2s;
-
-}
-
-.sidebar li:hover{
-
-background:#f2f2f2;
-
-padding-left:30px;
-
-}
-
-.sidebar li:active{
-
-background:#e5e5e5;
-
-}
-
-/* Menü butonu */
-
-.menuBtn{
-
-user-select:none;
-
-}
-
-.searchBtn{
-
-user-select:none;
-
-}
-```
+<!-- ÜRÜN LİSTELEME SAYFASI -->
 <div id="productPage" style="display:none;">
-
-<div style="padding:15px;">
-
-<button onclick="showHome()"
-style="
-padding:12px 20px;
-border:none;
-border-radius:10px;
-background:#1c2430;
-color:white;
-font-size:17px;
-margin-bottom:20px;
-">
-
-← Geri
-
-</button>
-
-<h2 id="brandTitle"
-style="
-margin-bottom:20px;
-font-size:30px;
-">
-
-</h2>
-
+<div style="padding:15px; max-width:1400px; margin:auto;">
+<button onclick="showHome()" style="padding:12px 20px; border:none; border-radius:10px; background:#1c2430; color:white; font-size:17px; margin-bottom:20px; cursor:pointer;">← Geri</button>
+<h2 id="brandTitle" style="margin-bottom:20px; font-size:30px; color:#1c2430;"></h2>
 <div id="productList"></div>
-
+</div>
 </div>
 
-</div>
 <script>
-
-const brands={
-
-"AYTAÇ":[
-"Deneme Ürün 1",
-"Deneme Ürün 2",
-"Deneme Ürün 3"
-],
-
-"EKİCİ":[
-"Peynir",
-"Kaşar"
-],
-
-"ECE":[
-"Yeşil Zeytin",
-"Siyah Zeytin"
-]
-
+// Marka ve Ürün Veri Tabanı
+const brands = {
+"AYTAÇ": ["Deneme Ürün 1", "Deneme Ürün 2", "Deneme Ürün 3"],
+"EKİCİ": ["Peynir", "Kaşar"],
+"ECE": ["Yeşil Zeytin", "Siyah Zeytin"],
+"KAVAKLIDERE": ["Özel Ürün 1", "Özel Ürün 2"],
+"ANCORA": ["Ancora Kahve", "Ancora Çikolata"],
+"DURU": ["Pilavlık Bulgur", "Kırmızı Mercimek"],
+"ANGARA": ["Angara Sos", "Angara Salça"],
+"VERONELLİ": ["Veronelli Makarna"],
+"ÖNCÜ": ["Domates Salçası", "Biber Salçası"],
+"YAĞIZ EFE": ["Sızma Zeytinyağı", "Kömlik Yağ"],
+"KRAL": ["Kral Ton Balığı", "Kral Sardalya"],
+"BAL & KAHVE": ["Süzme Çiçek Balı", "Türk Kahvesi"],
+"CATERING": ["Endüstriyel Sos", "Toplu Tüketim Ürünleri"],
+"PEGALOS": ["Özel Gurme Ürün"],
+"AKÇAY": ["Akçay Süt Ürünleri"],
+"VIORA": ["Viora İçecek Çeşitleri"],
+"YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
 };
 
+// Ürünleri Açma ve Listeleme Fonksiyonu
 function openBrand(name){
-
 document.querySelector(".container").style.display="none";
-
 document.getElementById("productPage").style.display="block";
-
-document.getElementById("brandTitle").innerHTML=name;
+document.getElementById("brandTitle").innerHTML = name + " Ürünleri";
 
 let html="";
-
 if(brands[name]){
-
 brands[name].forEach(function(x){
+html+=`<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px; color:#333;">${x}</div>`;
+});
+}else{
+html="<h3 style='color:#666;'>Bu markaya henüz ürün eklenmedi.</h3>";
+}
+document.getElementById("productList").innerHTML=html;
+window.scrollTo(0,0);
+}
 
-html+=`
+// Ana Sayfaya Dönüş
+function showHome(){
+document.querySelector(".container").style.display="block";
+document.getElementById("productPage").style.display="none";
+window.scrollTo(0,0);
+}
 
-<div style="
-background:white;
-padding:18px;
-border-radius:15px;
-margin-bottom:15px;
-box-shadow:0 3px 10px rgba(0,0,0,.10);
-">
+// Logoya tıklandığında TÜM ÜRÜNLERİN sırasıyla listelenmesi
+function showAllProducts(){
+document.querySelector(".container").style.display="none";
+document.getElementById("productPage").style.display="block";
+document.getElementById("brandTitle").innerHTML = "Tüm Ürünler (Sıralı Liste)";
 
-${x}
+let html = "";
+for (let brandName in brands) {
+html += `<h3 style="margin:20px 0 10px 0; color:#1c2430; border-bottom:2px solid #1c2430; padding-bottom:5px;">📌 ${brandName}</h3>`;
+brands[brandName].forEach(function(x){
+html += `<div style="background:white; padding:15px; border-radius:12px; margin-bottom:10px; box-shadow:0 3px 8px rgba(0,0,0,.08); font-size:17px;">${x}</div>`;
+});
+}
+document.getElementById("productList").innerHTML = html;
+window.scrollTo(0,0);
+}
 
-</div>
+// Menü Kontrolleri
+function toggleMenu(){
+let sidebar = document.getElementById("sidebar");
+let overlay = document.getElementById("overlay");
+sidebar.classList.toggle("active");
+overlay.classList.toggle("active");
+}
 
-`;
+function closeMenu(){
+let sidebar = document.getElementById("sidebar");
+let overlay = document.getElementById("overlay");
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+}
 
+// Kategorileri Filtreleme (Hamburger menüden tıklandığında)
+function filterByCategory(categoryName) {
+closeMenu();
+document.querySelector(".container").style.display="none";
+document.getElementById("productPage").style.display="block";
+document.getElementById("brandTitle").innerHTML = "Kategori: " + categoryName;
+
+// Örnek kategori filtreleme simülasyonu
+let html = `<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px;">${categoryName} kategorisine ait örnek toptan ürünler burada sıralanmaktadır.</div>`;
+document.getElementById("productList").innerHTML = html;
+window.scrollTo(0,0);
+}
+
+// Arama Motoru Fonksiyonları
+function openSearchModal() {
+document.getElementById("searchModal").style.display = "flex";
+document.getElementById("searchInput").focus();
+}
+
+function closeSearchModal() {
+document.getElementById("searchModal").style.display = "none";
+document.getElementById("searchInput").value = "";
+document.getElementById("searchResults").innerHTML = "";
+}
+
+function handleSearch(query) {
+let resultsContainer = document.getElementById("searchResults");
+if (!query.trim()) {
+resultsContainer.innerHTML = "";
+return;
+}
+
+let q = query.toLowerCase();
+let html = "";
+let foundCount = 0;
+
+for (let brand in brands) {
+brands[brand].forEach(item => {
+if (item.toLowerCase().includes(q) || brand.toLowerCase().includes(q)) {
+foundCount++;
+html += `
+<div class="searchItemCard" onclick="closeSearchModal(); openBrand('${brand}');">
+<div><strong>${item}</strong><br><small style="color:#666;">Marka: ${brand}</small></div>
+<span>Git</span>
+</div>`;
+}
+});
+}
+
+if (foundCount === 0) {
+html = `<div style="color:white; text-align:center; margin-top:30px; font-size:18px;">Aradığınız kriterlere uygun ürün bulunamadı.</div>`;
+}
+
+resultsContainer.innerHTML = html;
+}
+
+// SOLCULU SAĞLI KAYDIRMA (SWIPE / TOUCH) İLE MENÜ KONTROLÜ
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+touchStartX = e.changedTouches[0].screenX;
 });
 
-}else{
+document.addEventListener('touchend', e => {
+touchEndX = e.changedTouches[0].screenX;
+handleGesture();
+});
 
-html="<h3>Bu markaya ürün eklenmedi.</h3>";
-
+function handleGesture() {
+let diff = touchEndX - touchStartX;
+// Eğer soldan sağa doğru en az 80 piksel kaydırıldıysa ve parmak ekranın sol kenarından başladıysa
+if (diff > 80 && touchStartX < 60) {
+let sidebar = document.getElementById("sidebar");
+if (!sidebar.classList.contains("active")) {
+toggleMenu();
 }
-
-document.getElementById("productList").innerHTML=html;
-
 }
-
-function showHome(){
-
-document.querySelector(".container").style.display="block";
-
-document.getElementById("productPage").style.display="none";
-
+// Eğer sağdan sola doğru en az 80 piksel kaydırıldıysa menüyü kapat
+else if (diff < -80) {
+let sidebar = document.getElementById("sidebar");
+if (sidebar.classList.contains("active")) {
+closeMenu();
 }
-
+}
+}
 </script>
+
+</body>
+</html>
