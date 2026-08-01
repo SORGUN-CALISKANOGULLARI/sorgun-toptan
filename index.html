@@ -5,106 +5,301 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ürün Kataloğu</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        body { background-color: #f4f6f9; color: #333; }
+
+        /* Üst Menü Çubuğu */
         header {
             background-color: #2c3e50;
             color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-img {
-            width: 100%;
-            height: 200px;
-            background-color: #e0e0e0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #777;
-            font-size: 0.9rem;
+            justify-content: space-between;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .product-info {
-            padding: 1.5rem;
-            flex-grow: 1;
+        .header-title { font-size: 1.2rem; font-weight: bold; letter-spacing: 1px; }
+        .menu-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+        }
+
+        /* Yan Menü (Drawer) */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            background-color: white;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.2);
+            transition: left 0.3s ease;
+            z-index: 1000;
+            padding-top: 60px;
+        }
+        .sidebar.active { left: 0; }
+        .sidebar h3 { padding: 1rem; border-bottom: 1px solid #eee; color: #2c3e50; font-size: 1.1rem; }
+        .sidebar ul { list-style: none; }
+        .sidebar ul li a {
+            display: block;
+            padding: 1rem;
+            color: #444;
+            text-decoration: none;
+            border-bottom: 1px solid #f9f9f9;
+            transition: background 0.2s;
+        }
+        .sidebar ul li a:hover { background-color: #f1f2f6; color: #2c3e50; font-weight: bold; }
+        
+        /* Karartma Perdesi */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 900;
+        }
+        .overlay.active { display: block; }
+
+        /* Ana İçerik Alanı */
+        .container {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        /* Marka/Ürün Grid Yapısı (Görseldeki gibi 3'lü kutular) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            aspect-ratio: 4/3;
         }
-        .product-title {
-            font-size: 1.25rem;
-            margin: 0 0 0.5rem 0;
-            color: #2c3e50;
+        .card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.12); }
+        .card img {
+            max-width: 100%;
+            max-height: 70px;
+            object-fit: contain;
         }
-        .product-desc {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.5;
-            margin: 0;
+        .card span {
+            font-size: 0.85rem;
+            margin-top: 5px;
+            color: #555;
+            font-weight: bold;
         }
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: #2c3e50;
+
+        /* Ürün Listeleme Ekranı (Gizli/Açık Yönetimi) */
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+
+        .back-btn {
+            background: #2c3e50;
             color: white;
-            margin-top: 3rem;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .product-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .product-item h4 { color: #2c3e50; margin-bottom: 0.5rem; }
+        .product-item p { color: #666; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
+    <!-- Üst Bar -->
     <header>
-        <h1>Ürün Kataloğumuz</h1>
-        <p>Ürünlerimizi aşağıdan inceleyebilirsiniz (Fiyat bilgisi bulunmamaktadır)</p>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div class="header-title" id="pageTitle">KATEGORİLER</div>
+        <div style="width: 30px;"></div> <!-- Dengelemek için boşluk -->
     </header>
 
-    <div class="container">
-        <!-- Ürün 1 -->
-        <div class="product-card">
-            <div class="product-img">Ürün Görseli</div>
-            <div class="product-info">
-                <div>
-                    <h3 class="product-title">Örnek Ürün 1</h3>
-                    <p class="product-desc">Bu ürünün detaylı açıklaması buraya yazılır. Fiyat yazılmamıştır, sadece ürün hakkında bilgi verilmektedir.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Ürün 2 -->
-        <div class="product-card">
-            <div class="product-img">Ürün Görseli</div>
-            <div class="product-info">
-                <div>
-                    <h3 class="product-title">Örnek Ürün 2</h3>
-                    <p class="product-desc">İkinci ürünün açıklaması ve özellikleri burada yer alır.</p>
-                </div>
-            </div>
-        </div>
+    <!-- Yan Menü (Kategoriler / Çeşitler) -->
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    <div class="sidebar" id="sidebar">
+        <h3>Ürün Çeşitleri</h3>
+        <ul>
+            <li><a href="#" onclick="filterByCategory('Sirkeler')">Sirkeler</a></li>
+            <li><a href="#" onclick="filterByCategory('Soslar')">Soslar</a></li>
+            <li><a href="#" onclick="filterByCategory('Zeytinler')">Zeytinler</a></li>
+            <li><a href="#" onclick="filterByCategory('Süt Ürünleri')">Süt Ürünleri</a></li>
+            <li><a href="#" onclick="showHome()">Tüm Markalar</a></li>
+        </ul>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Tüm Hakları Saklıdır.</p>
-    </footer>
+    <!-- Ana İçerik -->
+    <div class="container">
 
+        <!-- 1. Bölüm: Marka Listesi (Ana Sayfa) -->
+        <div id="homeView" class="view-section active">
+            <h2 class="section-title">Markalar</h2>
+            <div class="grid-container">
+                <!-- Marka 1 -->
+                <div class="card" onclick="openBrand('Ancara')">
+                    <!-- Buraya kendi logo resmini ekleyebilirsin, şimdilik yazı koyduk -->
+                    <span>ANCORA</span>
+                </div>
+                <!-- Marka 2 -->
+                <div class="card" onclick="openBrand('Duru')">
+                    <span>DURU</span>
+                </div>
+                <!-- Marka 3 -->
+                <div class="card" onclick="openBrand('Ekici')">
+                    <span>Ekici</span>
+                </div>
+                <!-- Marka 4 -->
+                <div class="card" onclick="openBrand('Öncü')">
+                    <span>ÖNCÜ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Bölüm: Marka veya Çeşit Detay Sayfası -->
+        <div id="detailView" class="view-section">
+            <button class="back-btn" onclick="showHome()">← Geri Dön</button>
+            <h2 class="section-title" id="detailTitle">Ürünler</h2>
+            <div class="product-list" id="productList">
+                <!-- Ürünler JavaScript ile buraya dolacak -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Örnek Veri Tabanı (Markalara ve Çeşitlere göre ürünler)
+        const database = {
+            brands: {
+                "Ancara": [
+                    {name: "Ancara Spagetti", desc: "Özel buğdaydan üretilmiş katkısız makarna.", category: "Makarnalar"},
+                    {name: "Ancara Burgu", desc: "Sosları mükemmel tutan özel kesim.", category: "Makarnalar"}
+                ],
+                "Duru": [
+                    {name: "Duru Pilavlık Bulgur", desc: "Doğal ve lezzetli baş başı bulgur.", category: "Bakliyat"},
+                    {name: "Duru Haşlanmış Nohut", desc: "Pratik kapakta doğal haşlanmış nohut.", category: "Bakliyat"}
+                ],
+                "Ekici": [
+                    {name: "Ekici Tam Yağlı Beyaz Peynir", desc: "Geleneksel lezzet inek peyniri.", category: "Süt Ürünleri"},
+                    {name: "Ekici Süzme Peynir", desc: "Yumuşacık kıvamıyla kahvaltınızın vazgeçilmezi.", category: "Süt Ürünleri"}
+                ],
+                "Öncü": [
+                    {name: "Öncü Domates Salçası", desc: "Güneşte kurutulmuş olgun domateslerden.", category: "Soslar"},
+                    {name: "Öncü Biber Salçası Acı", desc: "Geleneksel ev yapımı tadında acı biber salçası.", category: "Soslar"},
+                    {name: "Öncü Üzüm Sirkesi", desc: "Doğal fermantasyon üzüm sirkesi", category: "Sirkeler"}
+                ]
+            }
+        };
+
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        function showHome() {
+            document.getElementById('homeView').classList.add('active');
+            document.getElementById('detailView').classList.remove('active');
+            document.getElementById('pageTitle').innerText = "KATEGORİLER";
+            document.getElementById('sidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // Markaya tıklandığında çalışan fonksiyon
+        function openBrand(brandName) {
+            document.getElementById('homeView').classList.remove('active');
+            document.getElementById('detailView').classList.add('active');
+            document.getElementById('detailTitle').innerText = brandName + " Ürünleri";
+            document.getElementById('pageTitle').innerText = brandName.toUpperCase();
+
+            let listHTML = "";
+            let products = database.brands[brandName] || [];
+            
+            if(products.length === 0) {
+                listHTML = "<p>Bu markaya ait ürün bulunamadı.</p>";
+            } else {
+                products.forEach(p => {
+                    listHTML += `<div class="product-item">
+                        <h4>${p.name}</h4>
+                        <p>${p.desc}</p>
+                    </div>`;
+                });
+            }
+            document.getElementById('productList').innerHTML = listHTML;
+        }
+
+        // Sol menüden çeşit seçildiğinde (Marka fark etmeksizin) çalışan fonksiyon
+        function filterByCategory(categoryName) {
+            document.getElementById('homeView').classList.remove('active');
+            document.getElementById('detailView').classList.add('active');
+            document.getElementById('detailTitle').innerText = categoryName + " Çeşitleri";
+            document.getElementById('pageTitle').innerText = categoryName.toUpperCase();
+            toggleMenu(); // Menüyü kapat
+
+            let listHTML = "";
+            let matchedProducts = [];
+
+            // Tüm markaları tara ve seçilen kategoriye uyanları topla
+            for (let brand in database.brands) {
+                database.brands[brand].forEach(p => {
+                    if(p.category === categoryName) {
+                        matchedProducts.push({...p, brand: brand});
+                    }
+                });
+            }
+
+            if(matchedProducts.length === 0) {
+                listHTML = "<p>Bu kategoride henüz ürün bulunmuyor.</p>";
+            } else {
+                matchedProducts.forEach(p => {
+                    listHTML += `<div class="product-item">
+                        <h4>${p.name} <span style="font-size:0.8rem; color:#888; float:right;">(${p.brand})</span></h4>
+                        <p>${p.desc}</p>
+                    </div>`;
+                });
+            }
+            document.getElementById('productList').innerHTML = listHTML;
+        }
+    </script>
 </body>
 </html>
