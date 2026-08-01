@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Kataloğu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-img {
+            width: 100%;
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-title {
+            font-size: 1.25rem;
+            margin: 0 0 0.5rem 0;
+            color: #2c3e50;
+        }
+        .product-desc {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+            margin: 0;
+        }
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ürün Kataloğumuz</h1>
+        <p>Ürünlerimizi aşağıdan inceleyebilirsiniz (Fiyat bilgisi bulunmamaktadır)</p>
+    </header>
+
+    <div class="container">
+        <!-- Ürün 1 -->
+        <div class="product-card">
+            <div class="product-img">Ürün Görseli</div>
+            <div class="product-info">
+                <div>
+                    <h3 class="product-title">Örnek Ürün 1</h3>
+                    <p class="product-desc">Bu ürünün detaylı açıklaması buraya yazılır. Fiyat yazılmamıştır, sadece ürün hakkında bilgi verilmektedir.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ürün 2 -->
+        <div class="product-card">
+            <div class="product-img">Ürün Görseli</div>
+            <div class="product-info">
+                <div>
+                    <h3 class="product-title">Örnek Ürün 2</h3>
+                    <p class="product-desc">İkinci ürünün açıklaması ve özellikleri burada yer alır.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Tüm Hakları Saklıdır.</p>
+    </footer>
+
+</body>
+</html>
