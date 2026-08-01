@@ -1,217 +1,415 @@
-.container{
-    max-width:1400px;
-    margin:auto;
-    padding:15px;
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorgun Toptan</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
-.grid-container{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
+body{
+background:#f4f5f7;
 }
 
-@media(min-width:700px){
-.grid-container{
-grid-template-columns:repeat(3,1fr);
+header{
+
+position:sticky;
+top:0;
+z-index:999;
+height:70px;
+background:#1c2430;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 18px;
+box-shadow:0 3px 10px rgba(0,0,0,.20);
+
 }
-}
 
-@media(min-width:1000px){
-.grid-container{
-grid-template-columns:repeat(4,1fr);
-}
-}
+.menuBtn{
 
-.card{
-
-background:#fff;
-
-border-radius:18px;
-
-padding:18px;
-
+font-size:34px;
+color:white;
 cursor:pointer;
 
-display:flex;
+}
 
+.logoTitle{
+
+font-size:24px;
+font-weight:bold;
+color:white;
+letter-spacing:1px;
+
+}
+
+.searchBtn{
+
+font-size:28px;
+color:white;
+cursor:pointer;
+
+}
+
+.container{
+
+width:100%;
+max-width:1400px;
+margin:auto;
+padding:20px;
+
+}
+
+.brandGrid{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:22px;
+
+}
+
+.brandCard{
+
+background:white;
+height:240px;
+border-radius:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.12);
+
+display:flex;
 flex-direction:column;
 
 justify-content:center;
-
 align-items:center;
+
+cursor:pointer;
 
 transition:.25s;
 
-box-shadow:0 5px 18px rgba(0,0,0,.12);
+}
 
-border:1px solid #ececec;
+.brandCard:hover{
+
+transform:scale(1.03);
 
 }
 
-.card:hover{
+.brandCard img{
 
-transform:translateY(-6px);
-
-}
-
-.card img{
-
-width:100%;
-
-height:160px;
-
+width:90%;
+height:170px;
 object-fit:contain;
 
-margin-bottom:12px;
+}
+
+.brandCard h3{
+
+margin-top:10px;
+font-size:20px;
+color:#333;
 
 }
 
-.card span{
+</style>
 
-font-size:18px;
+</head>
 
-font-weight:bold;
+<body>
 
-}<header>
+<header>
 
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<div class="menuBtn">☰</div>
 
-<div class="header-title" id="pageTitle">
+<div class="logoTitle">
 
 SORGUN TOPTAN
 
 </div>
 
-<div>
+<div class="searchBtn">
 
-<input
-id="searchBox"
-type="text"
-placeholder="Ürün Ara..."
-onkeyup="searchProducts()">
+🔍
 
 </div>
 
 </header>
-#searchBox{
 
-width:170px;
+<div class="container">
 
-padding:8px;
+<div class="brandGrid">
 
-border-radius:8px;
-
-border:none;
-
-outline:none;
-
-font-size:15px;
-
-}
-<div id="homeView" class="view-section active">
-
-    <div class="grid-container" id="brandContainer">
-
-    </div>
-
+<div class="brandCard">
+<img src="AYTAC_LOGO">
+<h3>AYTAÇ</h3>
 </div>
-<div class="card" onclick="openBrand('Aytaç')">
 
-<img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/aytac.jpeg">
-
-<span>AYTAÇ</span>
-
+<div class="brandCard">
+<img src="EKICI_LOGO">
+<h3>EKİCİ</h3>
 </div>
-const brands = [
 
-{
-name:"Aytaç",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/aytac.jpeg"
-},
+<div class="brandCard">
+<img src="ECE_LOGO">
+<h3>ECE</h3>
+</div>
 
-{
-name:"Ekici",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/123456.png"
-},
+<div class="brandCard">
+<img src="KAVAKLIDERE_LOGO">
+<h3>KAVAKLIDERE</h3>
+</div>
 
-{
-name:"Yeni Ürün",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp"
-},
+<div class="brandCard">
+<img src="ANCORA_LOGO">
+<h3>ANCORA</h3>
+</div>
 
-{
-name:"Yağız Efe",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ya%C4%9F%C4%B1zefe.jpg"
-},
+<div class="brandCard">
+<img src="DURU_LOGO">
+<h3>DURU</h3>
+</div>
 
-{
-name:"Kral",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kral.jpg"
-},
+<div class="brandCard">
+<img src="ANGARA_LOGO">
+<h3>ANGARA</h3>
+</div>
 
-{
-name:"Kavak",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kavak.jpg"
-},
+<div class="brandCard">
+<img src="VERONELLI_LOGO">
+<h3>VERONELLİ</h3>
+</div>
 
-{
-name:"Images",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/images.png"
-},
+<div class="brandCard">
+<img src="ONCU_LOGO">
+<h3>ÖNCÜ</h3>
+</div>
 
-{
-name:"Duru",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/duru.jpeg"
-},
+<div class="brandCard">
+<img src="YAGIZEFE_LOGO">
+<h3>YAĞIZ EFE</h3>
+</div>
 
-{
-name:"Angara",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/angara.jpeg"
-},
+<div class="brandCard">
+<img src="KRAL_LOGO">
+<h3>KRAL</h3>
+</div>
 
-{
-name:"Akçay",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/akcay.jpeg"
-},
+<div class="brandCard">
+<img src="BAL_LOGO">
+<h3>BAL & KAHVE</h3>
+</div>
 
-{
-name:"VI",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/VI.jpeg"
-},
+<div class="brandCard">
+<img src="CATERING_LOGO">
+<h3>CATERING</h3>
+</div>
 
-{
-name:"ChatGPT",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ChatGPT%20Image%201%20A%C4%9Fu%202026%2019_40_10.png"
-},
+<div class="brandCard">
+<img src="PEGALOS_LOGO">
+<h3>PEGALOS</h3>
+</div>
 
-{
-name:"1234",
-image:"https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/1234.png"
-}
+<div class="brandCard">
+<img src="VIORA_LOGO">
+<h3>VIORA</h3>
+</div>
 
-];
-function loadBrands(){
-
-let html="";
-
-brands.forEach(function(b){
-
-html+=`
-
-<div class="card" onclick="openBrand('${b.name}')">
-
-<img src="${b.image}">
-
-<span>${b.name}</span>
+<div class="brandCard">
+<img src="YENIURUN_LOGO">
+<h3>YENİ ÜRÜN</h3>
+</div>
 
 </div>
 
-`;
+</div>
+```
+```html
+<!-- KARARTMA -->
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
 
-});
+<!-- HAMBURGER MENÜ -->
 
-document.getElementById("brandContainer").innerHTML=html;
+<div id="sidebar" class="sidebar">
+
+<div class="menuHeader">
+
+Ürün Grupları
+
+</div>
+
+<ul>
+
+<li onclick="filterByCategory('Zeytinler')">🫒 Zeytinler</li>
+
+<li onclick="filterByCategory('Şarküteri')">🥩 Şarküteri</li>
+
+<li onclick="filterByCategory('Peynir Grubu')">🧀 Süt Ürünleri</li>
+
+<li onclick="filterByCategory('İçecekler')">🥤 İçecekler</li>
+
+<li onclick="filterByCategory('Sirkeler')">🍾 Sirkeler</li>
+
+<li onclick="filterByCategory('Salçalar')">🍅 Salçalar & Soslar</li>
+
+<li onclick="filterByCategory('Bal')">🍯 Bal & Kahve</li>
+
+<li onclick="filterByCategory('Turşular')">🥒 Turşular</li>
+
+<li onclick="filterByCategory('Makarnalar')">🍝 Makarnalar</li>
+
+<li onclick="filterByCategory('Bakliyat')">🌾 Bakliyat</li>
+
+<li onclick="filterByCategory('Yufkalar')">🥟 Yufka & Tatlı</li>
+
+<li onclick="filterByCategory('Catering')">🍽 Catering</li>
+
+<li onclick="filterByCategory('Mutfak')">🍴 Mutfak Gereçleri</li>
+
+<li onclick="filterByCategory('Mama')">🐱 Evcil Hayvan Mamaları</li>
+
+<li onclick="filterByCategory('Temizlik')">🧴 Temizlik Ürünleri</li>
+
+<li onclick="showHome()">🏠 Tüm Markalar</li>
+
+</ul>
+
+</div>
+```
+```css
+/*========================*/
+/* HAMBURGER MENÜ */
+/*========================*/
+
+.overlay{
+
+position:fixed;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+
+display:none;
+
+z-index:999;
 
 }
 
-loadBrands();
+.sidebar{
+
+position:fixed;
+
+top:0;
+
+left:-320px;
+
+width:300px;
+
+height:100%;
+
+background:#fff;
+
+box-shadow:5px 0 20px rgba(0,0,0,.25);
+
+transition:.35s;
+
+overflow-y:auto;
+
+z-index:1000;
+
+}
+
+.sidebar.active{
+
+left:0;
+
+}
+
+.overlay.active{
+
+display:block;
+
+}
+
+.menuHeader{
+
+height:70px;
+
+background:#1c2430;
+
+color:#fff;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:24px;
+
+font-weight:bold;
+
+letter-spacing:1px;
+
+}
+
+.sidebar ul{
+
+list-style:none;
+
+padding:0;
+
+margin:0;
+
+}
+
+.sidebar li{
+
+padding:18px 20px;
+
+font-size:18px;
+
+border-bottom:1px solid #ececec;
+
+cursor:pointer;
+
+transition:.2s;
+
+}
+
+.sidebar li:hover{
+
+background:#f2f2f2;
+
+padding-left:30px;
+
+}
+
+.sidebar li:active{
+
+background:#e5e5e5;
+
+}
+
+/* Menü butonu */
+
+.menuBtn{
+
+user-select:none;
+
+}
+
+.searchBtn{
+
+user-select:none;
+
+}
+```
