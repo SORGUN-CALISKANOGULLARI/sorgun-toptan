@@ -431,9 +431,9 @@ let html="";
 if(brands[name]){
 brands[name].forEach(function(x){
 if(typeof x === 'object'){
-html+=`<div style="background:white; padding:15px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); display:flex; align-items:center; gap:15px;">
-<img src="${x.image}" style="width:60px; height:60px; object-fit:contain; border-radius:8px; background:#f9f9f9;" onerror="this.style.display='none'">
-<span style="font-size:18px; color:#333; font-weight:bold;">${x.name}</span>
+html+=`<div style="background:white; padding:15px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); display:flex; align-items:center; gap:20px;">
+<img src="${x.image}" style="width:100px; height:100px; object-fit:contain; border-radius:10px; background:#f9f9f9; padding:4px;" onerror="this.style.display='none'">
+<span style="font-size:20px; color:#333; font-weight:bold;">${x.name}</span>
 </div>`;
 }else{
 html+=`<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px; color:#333;">${x}</div>`;
@@ -462,9 +462,9 @@ for (let brandName in brands) {
 html += `<h3 style="margin:20px 0 10px 0; color:#1c2430; border-bottom:2px solid #1c2430; padding-bottom:5px;">📌 ${brandName}</h3>`;
 brands[brandName].forEach(function(x){
 if(typeof x === 'object'){
-html += `<div style="background:white; padding:12px 15px; border-radius:12px; margin-bottom:10px; box-shadow:0 3px 8px rgba(0,0,0,.08); display:flex; align-items:center; gap:12px;">
-<img src="${x.image}" style="width:45px; height:45px; object-fit:contain; border-radius:6px; background:#f9f9f9;" onerror="this.style.display='none'">
-<span style="font-size:17px; color:#333;">${x.name}</span></div>`;
+html += `<div style="background:white; padding:15px; border-radius:12px; margin-bottom:10px; box-shadow:0 3px 8px rgba(0,0,0,.08); display:flex; align-items:center; gap:15px;">
+<img src="${x.image}" style="width:80px; height:80px; object-fit:contain; border-radius:8px; background:#f9f9f9; padding:3px;" onerror="this.style.display='none'">
+<span style="font-size:18px; color:#333; font-weight:bold;">${x.name}</span></div>`;
 }else{
 html += `<div style="background:white; padding:15px; border-radius:12px; margin-bottom:10px; box-shadow:0 3px 8px rgba(0,0,0,.08); font-size:17px;">${x}</div>`;
 }
@@ -557,4 +557,3 @@ closeMenu();
 }
 }
 </script>
-
