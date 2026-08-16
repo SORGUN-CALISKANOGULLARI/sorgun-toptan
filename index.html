@@ -103,22 +103,19 @@ color:#222;
 font-weight: bold;
 }
 
-/* 50+ ÜRÜN İÇİN TEK SÜTUN BÜYÜK KART TASARIMI */
+/* ÜRÜN KUTULARI VE BÜYÜK YAZILAR */
 .productGrid {
-display: flex;
-flex-direction: column;
-gap: 20px;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
 margin-top: 15px;
-max-width: 800px;
-margin-left: auto;
-margin-right: auto;
 }
 
 .productCell {
 background: white;
-border-radius: 20px;
-padding: 18px;
-box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+border-radius: 18px;
+padding: 15px;
+box-shadow:0 5px 15px rgba(0,0,0,.10);
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -127,10 +124,10 @@ text-align: center;
 
 .productCell img {
 width: 100%;
-height: 380px; 
+height: 240px; 
 object-fit: contain;
 border-radius: 12px;
-margin-bottom: 15px;
+margin-bottom: 12px;
 background: #fafafa;
 padding: 5px;
 }
@@ -143,7 +140,7 @@ width: 100%;
 background: #ffeb3b; 
 padding: 14px 10px;
 border-radius: 10px;
-line-height: 1.4;
+line-height: 1.3;
 }
 
 /* ARAMA MODALI */
@@ -210,7 +207,7 @@ padding: 4px 8px;
 border-radius: 6px;
 }
 
-/* HAMBURGER MENÜ */
+/* HAMBURGER MENÜ VE BÜYÜK YAZILAR */
 .overlay{
 position:fixed;
 left:0;
@@ -469,9 +466,9 @@ const brands = {
     { name: "PİLİÇ SUCUK ACISIZ 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece900bbr.jpeg" },
     { name: "DANA KANGAL SUCUK CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1600bbr.jpeg" },
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1600czk.jpeg" }
-    { name: "FDGG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE1540YES%20(1).png" }
-    { name: "DFGFF", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE1580KRM.png" }
-    { name: "FFFF", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecepetysl.jpeg" }
+    { name: "DFG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE1540YES%20(1).png" }
+    { name: "FGHFG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE1580KRM.png" }
+    { name: "GFDG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecepetysl.jpeg" }
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecepetkrm.jpeg" }
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1bbr.jpeg" }
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecetnk.jpeg" }
@@ -482,58 +479,32 @@ const brands = {
     { name: "PİLİÇ SUCUK ACISIZ 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece2byz.jpeg" },
     { name: "DANA KANGAL SUCUK CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceelma500.jpeg" },
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1elma.jpeg" }
-    { name: "FGDDD", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece500slt.jpeg" }
-    { name: "45", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceslt750.jpeg" }
-    { name: "YRTH", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecenar250.jpeg" }
+    { name: "", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece500slt.jpeg" }
+    { name: "", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceslt750.jpeg" }
+    { name: "", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecenar250.jpeg" }
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecenar1.jpeg" }
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece500lmn.jpeg" }
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1lmn.jpeg" }
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecelmnt.jpeg" }
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecekrdt.jpeg" } 
     { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecevsn.jpeg" }
+    { name: "DANA ÇERKEŞ SUCUK", image: "" }
 ],
-"KAVAKLIDERE": [
-    { name: "KAVAKLIDERE ÖZEL ÜRÜN", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kavak.jpg" }
-],
-"ANCORA": [
-    { name: "ANCORA ÜRÜN 1", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/1234.png" }
-],
-"DURU": [
-    { name: "DURU PİLAVLIK BULGUR", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/duru.jpeg" }
-],
-"ANGARA": [
-    { name: "ANGARA ÜRÜN 1", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/angara.jpeg" }
-],
-"VERONELLİ": [
-    { name: "VERONELLİ MAKARNA", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/images.png" }
-],
-"ÖNCÜ": [
-    { name: "ÖNCÜ SALÇA", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/WhatsApp%20Image%202026-05-13%20at%2008.58.36%20(1).jpeg" }
-],
-"YAĞIZ EFE": [
-    { name: "YAĞIZ EFE ZEYTİNYAĞI", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ya%C4%9F%C4%B1zefe.jpg" }
-],
-"KRAL": [
-    { name: "KRAL TON BALIĞI", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kral.jpg" }
-],
-"BAL & KAHVE": [
-    { name: "BAL VE KAHVE ÜRÜNÜ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ChatGPT%20Image%201%20A%C4%9Fu%202026%2019_40_10.png" }
-],
-"CATERING": [
-    { name: "CATERING ÜRÜNÜ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/WhatsApp%20Image%202026-08-01%20at%2021.02.18.jpeg" }
-],
-"PEGALOS": [
-    { name: "PEGALOS ÜRÜNÜ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/WhatsApp%20Image%202026-08-01%20at%2021.02.31.jpeg" }
-],
-"AKÇAY": [
-    { name: "AKÇAY ÜRÜNÜ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/akcay.jpeg" }
-],
-"VIORA": [
-    { name: "VİORA ÜRÜNÜ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/VI.jpeg" }
-],
-"YENİ ÜRÜN": [
-    { name: "SEZONUN YENİ ÜRÜNÜ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp" }
-]
+"ECE": ["Yeşil Zeytin 1", "Siyah Zeytin 1"],
+"KAVAKLIDERE": ["Özel Ürün 1", "Özel Ürün 2"],
+"ANCORA": ["Ancora Kahve", "Ancora Çikolata"],
+"DURU": ["Pilavlık Bulgur", "Kırmızı Mercimek"],
+"ANGARA": ["Angara Sos", "Angara Salça"],
+"VERONELLİ": ["Veronelli Makarna"],
+"ÖNCÜ": ["Domates Salçası", "Biber Salçası"],
+"YAĞIZ EFE": ["Sızma Zeytinyağı", "Kömürlük Yağ"],
+"KRAL": ["Kral Ton Balığı", "Kral Sardalya"],
+"BAL & KAHVE": ["Süzme Çiçek Balı", "Türk Kahvesi"],
+"CATERING": ["Endüstriyel Sos", "Toplu Tüketim Ürünleri"],
+"PEGALOS": ["Özel Gurme Ürün"],
+"AKÇAY": ["Akçay Süt Ürünleri"],
+"VIORA": ["Viora İçecek Çeşitleri"],
+"YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
 };
 
 window.addEventListener('popstate', (event) => {
@@ -618,7 +589,7 @@ closeMenu();
 document.getElementById("homeContainer").style.display="none";
 document.getElementById("productPage").style.display="block";
 document.getElementById("brandTitle").innerHTML = "Kategori: " + categoryName;
-let html = `<div style="background:white; padding:20px; border-radius:15px; margin-bottom:15px; font-size:20px; font-weight:bold; color:#1c2430; text-align:center;">${categoryName} grubuna ait toptan ürünler yakında eklenecektir.</div>`;
+let html = `<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px;">${categoryName} kategorisine ait toptan ürünler listelenmektedir.</div>`;
 document.getElementById("productList").innerHTML = html;
 window.scrollTo(0,0);
 }
