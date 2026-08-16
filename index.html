@@ -34,7 +34,6 @@ box-shadow:0 3px 10px rgba(0,0,0,.20);
 width:100%;
 }
 
-/* Hamburger Menü Çizgileri Büyütüldü */
 .menuBtn{
 font-size:48px;
 color:white;
@@ -67,7 +66,6 @@ margin:auto;
 padding:20px;
 }
 
-/* Ana Sayfa Marka Kutuları ve Yazıları Büyütüldü */
 .brandGrid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -76,7 +74,7 @@ gap:22px;
 
 .brandCard{
 background:white;
-height:320px; /* Kutu boyutu büyütüldü */
+height:320px;
 border-radius:20px;
 box-shadow:0 5px 15px rgba(0,0,0,.12);
 display:flex;
@@ -94,18 +92,18 @@ transform:scale(1.03);
 
 .brandCard img{
 width:100%;
-height:230px; /* Logolar büyütüldü */
+height:230px;
 object-fit:contain;
 }
 
 .brandCard h3{
 margin-top:12px;
-font-size:22px; /* Marka isim yazıları büyütüldü */
+font-size:22px;
 color:#222;
 font-weight: bold;
 }
 
-/* Yan Yana Ürün Kutuları */
+/* ÜRÜN KUTULARI VE BÜYÜK YAZILAR */
 .productGrid {
 display: grid;
 grid-template-columns: repeat(2, 1fr);
@@ -126,7 +124,7 @@ text-align: center;
 
 .productCell img {
 width: 100%;
-height: 320px; /* Bu değeri artırdıkça resimler daha da büyüyecektir */
+height: 240px; 
 object-fit: contain;
 border-radius: 12px;
 margin-bottom: 12px;
@@ -135,17 +133,17 @@ padding: 5px;
 }
 
 .productCell .pName {
-font-size: 24px;
+font-size: 20px; /* Ürün altındaki yazılar büyük yapıldı */
 font-weight: bold;
 color: #1c2430;
 width: 100%;
 background: #ffeb3b; 
-padding: 12px 8px;
-border-radius: 8px;
+padding: 14px 10px;
+border-radius: 10px;
 line-height: 1.3;
 }
 
-/* Arama Modalı */
+/* ARAMA MODALI */
 .searchModal {
 position: fixed;
 top: 0;
@@ -209,7 +207,7 @@ padding: 4px 8px;
 border-radius: 6px;
 }
 
-/* Hamburger Menü */
+/* HAMBURGER MENÜ VE BÜYÜK YAZILAR */
 .overlay{
 position:fixed;
 left:0;
@@ -262,7 +260,8 @@ margin:0;
 
 .sidebar li{
 padding:18px 20px;
-font-size:32px;
+font-size:22px; /* Hamburger menü yazıları büyük yapıldı */
+font-weight:bold;
 border-bottom:1px solid #ececec;
 cursor:pointer;
 transition:.2s;
@@ -314,7 +313,7 @@ padding-left:30px;
 <li onclick="filterByCategory('Mutfak')">🍴 Mutfak Gereçleri</li>
 <li onclick="filterByCategory('Mama')">🐱 Evcil Hayvan Mamaları</li>
 <li onclick="filterByCategory('Temizlik')">🧴 Temizlik Ürünleri</li>
-
+<li onclick="showHome()">🏠 Tüm Markalar</li>
 </ul>
 </div>
 
@@ -353,7 +352,7 @@ padding-left:30px;
 
 <div class="brandCard" onclick="openBrand('ANGARA')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/angara.jpeg">
-<h3>ANKARA</h3>
+<h3>ANGARA</h3>
 </div>
 
 <div class="brandCard" onclick="openBrand('VERONELLİ')">
@@ -411,7 +410,6 @@ padding-left:30px;
 <!-- ÜRÜN LİSTELEME SAYFASI -->
 <div id="productPage" style="display:none;">
 <div style="padding:15px; max-width:1400px; margin:auto;">
-<!-- Geri Tuşu Büyütüldü -->
 <button onclick="showHome()" style="padding:14px 26px; border:none; border-radius:12px; background:#1c2430; color:white; font-size:19px; font-weight:bold; margin-bottom:20px; cursor:pointer;">← Geri Dön</button>
 <h2 id="brandTitle" style="margin-bottom:20px; font-size:32px; color:#1c2430;"></h2>
 <div id="productList"></div>
@@ -423,22 +421,37 @@ const brands = {
 "AYTAÇ": [
     { name: "YARIM YAĞLI SÜT 1 LT X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYST%20(2).jpeg" },
     { name: "FINDIKLI KAKAO KREMASI 700 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYGGG.jpeg" },
-    { name: "SİPŞAK HİNDİ SALAM 50 GR X 18", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyslmhac.jpeg" },
-    { name: "ŞİPŞAK MACAR SALAM 40 GR X 12 ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyslmacp.jpeg" },
-    { name: "ŞİPŞAK PİLİÇ SALAM 40 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayymacar.jpeg" },
+    { name: "ŞİPSAK HİNDİ SALAM 50 GR X 18", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayySlmhac.jpeg" },
+    { name: "ŞİPSAK MACAR SALAM 40 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayySlmacp.jpeg" },
+    { name: "ŞİPSAK PİLİÇ SALAM 40 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayySlmacar.jpeg" },
     { name: "ÇİFTLİK SOSİS 225 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayysos225.jpeg" },
-    { name: "KOKTEYL SOSİS 240 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYSSS.jpeg" },
-    { name: "PİLİÇ SALAM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY200P.jpeg" },
-    { name: "ÇİFTLİK SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycps.jpeg" },
-    { name: "PİLİÇ SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY500PS.jpeg" },
+    { name: "KOKTEYL SOSİS 240 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY200P.jpeg" },
+    { name: "PİLİÇ SALAM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYSSS.jpeg" },
+    { name: "ÇİFTLİK SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY500PS.jpeg" },
+    { name: "PİLİÇ SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycps.jpeg" },
     { name: "DANA PARMAK 400 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayypard.jpeg" },
-    { name: "PİLİÇ PARMAK 400 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyparp.jpeg" },
-    { name: "PİLİÇ SUCUK ACILI 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180a.jpeg" },
-    { name: "PİLİÇ SUCUK ACISIZ 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180.jpeg" },
-    { name: "DANA KANGAL SUCUK CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrm.jpg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrkes.jpeg"]
+    { name: "PİLİÇ SUCUK ACILI 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyparp.jpeg" },
+    { name: "PİLİÇ SUCUK ACISIZ 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180a.jpeg" },
+    { name: "DANA KANGAL SUCUK CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrm.jpeg" },
+    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrkes.jpeg" }
+],
 "EKİCİ": [
-    { name: "YARIM YAĞLI SÜT 1 LT X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYST%20(2).jpeg"]
+    { name: "YARIM YAĞLI SÜT 1 LT X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYST%20(2).jpeg" },
+    { name: "FINDIKLI KAKAO KREMASI 700 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYGGG.jpeg" },
+    { name: "DANA SUCUK KANGAL 280 GR", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayySlmhac.jpeg" },
+    { name: "ŞİPSAK MACAR SALAM", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayySlmacp.jpeg" },
+    { name: "Deneme Ürün 5", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayySlmacar.jpeg" },
+    { name: "Deneme Ürün 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayysos225.jpeg" },
+    { name: "Deneme Ürün 7", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY200P.jpeg" },
+    { name: "Deneme Ürün 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYSSS.jpeg" },
+    { name: "Deneme Ürün 9", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY500PS.jpeg" },
+    { name: "Deneme Ürün 10", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycps.jpeg" },
+    { name: "Deneme Ürün 11", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayypard.jpeg" },
+    { name: "Deneme Ürün 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyparp.jpeg" },
+    { name: "Deneme Ürün 13", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180a.jpeg" },
+    { name: "Deneme Ürün 14", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrm.jpeg" },
+    { name: "Deneme Ürün 15", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrkes.jpeg" }
+],
 "ECE": ["Yeşil Zeytin 1", "Siyah Zeytin 1"],
 "KAVAKLIDERE": ["Özel Ürün 1", "Özel Ürün 2"],
 "ANCORA": ["Ancora Kahve", "Ancora Çikolata"],
