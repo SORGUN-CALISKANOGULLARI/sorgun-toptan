@@ -18,19 +18,22 @@ font-family:Arial,Helvetica,sans-serif;
 body{
 background:#f4f5f7;
 overflow-x: hidden;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 0;
 }
 
-header{
-position:sticky;
-top:0;
-z-index:999;
-height:82px;
-background:#1c2430;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 18px;
-box-shadow:0 3px 10px rgba(0,0,0,.20);
+/* Telefon genişliği ve çerçeve hissi için bunu da hemen altına ekleyebilirsiniz */
+header, .container, #productPage > div, #searchModal {
+width: 100% !important;
+max-width: 480px !important;
+box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+header {
+position: sticky !important;
+top: 0;
 }
 
 .menuBtn{
@@ -239,7 +242,7 @@ background:#e5e5e5;
 
 <header>
 <div class="menuBtn" onclick="toggleMenu()">☰</div>
-<div class="logoTitle" onclick="showAllProducts()">SORGUN TOPTAN</div>
+<div class="logoTitle" onclick="showAllProducts()">ÇALIŞKANOĞULLARI</div>
 <div class="searchBtn" onclick="openSearchModal()">🔍</div>
 </header>
 
@@ -377,10 +380,29 @@ background:#e5e5e5;
 </div>
 
 <script>
+<script>
 // Marka ve Ürün Veri Tabanı
 const brands = {
-"AYTAÇ": ["Deneme Ürün 1", "Deneme Ürün 2", "Deneme Ürün 3"],
-  "Deneme Ürün 4"
+"AYTAÇ": [
+    "Deneme Ürün 1",
+    "Deneme Ürün 2",
+    "Deneme Ürün 3",
+    "Deneme Ürün 4",
+    "Deneme Ürün 5",
+    "Deneme Ürün 6",
+    "Deneme Ürün 7",
+    "Deneme Ürün 8",
+    "Deneme Ürün 9",
+    "Deneme Ürün 10",
+    "Deneme Ürün 11",
+    "Deneme Ürün 12",
+    "Deneme Ürün 13",
+    "Deneme Ürün 14",
+    "Deneme Ürün 15",
+    "Deneme Ürün 16",
+    "Deneme Ürün 17",
+    "Deneme Ürün 18"
+],
 "EKİCİ": ["Peynir", "Kaşar"],
 "ECE": ["Yeşil Zeytin", "Siyah Zeytin"],
 "KAVAKLIDERE": ["Özel Ürün 1", "Özel Ürün 2"],
@@ -389,7 +411,7 @@ const brands = {
 "ANGARA": ["Angara Sos", "Angara Salça"],
 "VERONELLİ": ["Veronelli Makarna"],
 "ÖNCÜ": ["Domates Salçası", "Biber Salçası"],
-"YAĞIZ EFE": ["Sızma Zeytinyağı", "Kömlik Yağ"],
+"YAĞIZ EFE": ["Sızma Zeytinyağı", "Kömürlük Yağ"],
 "KRAL": ["Kral Ton Balığı", "Kral Sardalya"],
 "BAL & KAHVE": ["Süzme Çiçek Balı", "Türk Kahvesi"],
 "CATERING": ["Endüstriyel Sos", "Toplu Tüketim Ürünleri"],
@@ -399,20 +421,41 @@ const brands = {
 "YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
 };
 
-// Ürünleri Açma ve Listeleme Fonksiyonu
+// Ürünleri ve Aytaç İçin Resmi Gösteren Fonksiyon
 function openBrand(name){
 document.querySelector(".container").style.display="none";
 document.getElementById("productPage").style.display="block";
 document.getElementById("brandTitle").innerHTML = name + " Ürünleri";
 
 let html="";
+
+// Eğer Aytaç'a tıklandıysa üstte resmi gösterir
+if(name === "AYTAÇ") {
+    html += `<div style="text-align:center; background:white; padding:15px; border-radius:15px; margin-bottom:20px; box-shadow:0 3px 10px rgba(0,0,0,.1);">
+    <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/aytac.jpeg" style="max-height:100px; object-fit:contain;">
+    </div>`;
+}
+
 if(brands[name]){
 brands[name].forEach(function(x){
-html+=`<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px; color:#333;">${x}</div>`;
+html+=`
+<div style="
+background:white;
+padding:18px;
+border-radius:15px;
+margin-bottom:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.10);
+font-size:18px;
+color:#333;
+">
+${x}
+</div>
+`;
 });
 }else{
-html="<h3 style='color:#666;'>Bu markaya henüz ürün eklenmedi.</h3>";
+html="<h3 style='color:#666;'>Bu markaya ürün eklenmedi.</h3>";
 }
+
 document.getElementById("productList").innerHTML=html;
 window.scrollTo(0,0);
 }
@@ -424,11 +467,11 @@ document.getElementById("productPage").style.display="none";
 window.scrollTo(0,0);
 }
 
-// Logoya tıklandığında TÜM ÜRÜNLERİN sırasıyla listelenmesi
+// Logoya Tıklayınca Tüm Ürünleri Listeleme
 function showAllProducts(){
 document.querySelector(".container").style.display="none";
 document.getElementById("productPage").style.display="block";
-document.getElementById("brandTitle").innerHTML = "Tüm Ürünler (Sıralı Liste)";
+document.getElementById("brandTitle").innerHTML = "Tüm Ürünler ve Markalar";
 
 let html = "";
 for (let brandName in brands) {
@@ -456,15 +499,14 @@ sidebar.classList.remove("active");
 overlay.classList.remove("active");
 }
 
-// Kategorileri Filtreleme (Hamburger menüden tıklandığında)
+// Kategorileri Filtreleme
 function filterByCategory(categoryName) {
 closeMenu();
 document.querySelector(".container").style.display="none";
 document.getElementById("productPage").style.display="block";
 document.getElementById("brandTitle").innerHTML = "Kategori: " + categoryName;
 
-// Örnek kategori filtreleme simülasyonu
-let html = `<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px;">${categoryName} kategorisine ait örnek toptan ürünler burada sıralanmaktadır.</div>`;
+let html = `<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px;">${categoryName} kategorisine ait toptan ürünler listelenmektedir.</div>`;
 document.getElementById("productList").innerHTML = html;
 window.scrollTo(0,0);
 }
@@ -512,7 +554,7 @@ html = `<div style="color:white; text-align:center; margin-top:30px; font-size:1
 resultsContainer.innerHTML = html;
 }
 
-// SOLCULU SAĞLI KAYDIRMA (SWIPE / TOUCH) İLE MENÜ KONTROLÜ
+// Kaydırma (Swipe) Algılama
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -527,15 +569,12 @@ handleGesture();
 
 function handleGesture() {
 let diff = touchEndX - touchStartX;
-// Eğer soldan sağa doğru en az 80 piksel kaydırıldıysa ve parmak ekranın sol kenarından başladıysa
 if (diff > 80 && touchStartX < 60) {
 let sidebar = document.getElementById("sidebar");
 if (!sidebar.classList.contains("active")) {
 toggleMenu();
 }
-}
-// Eğer sağdan sola doğru en az 80 piksel kaydırıldıysa menüyü kapat
-else if (diff < -80) {
+} else if (diff < -80) {
 let sidebar = document.getElementById("sidebar");
 if (sidebar.classList.contains("active")) {
 closeMenu();
@@ -543,6 +582,3 @@ closeMenu();
 }
 }
 </script>
-
-</body>
-</html>
