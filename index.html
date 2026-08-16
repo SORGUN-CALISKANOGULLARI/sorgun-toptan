@@ -133,7 +133,7 @@ padding: 5px;
 }
 
 .productCell .pName {
-font-size: 20px; /* Ürün altındaki yazılar büyük yapıldı */
+font-size: 20px;
 font-weight: bold;
 color: #1c2430;
 width: 100%;
@@ -260,7 +260,7 @@ margin:0;
 
 .sidebar li{
 padding:18px 20px;
-font-size:22px; /* Hamburger menü yazıları büyük yapıldı */
+font-size:22px;
 font-weight:bold;
 border-bottom:1px solid #ececec;
 cursor:pointer;
@@ -410,7 +410,7 @@ padding-left:30px;
 <!-- ÜRÜN LİSTELEME SAYFASI -->
 <div id="productPage" style="display:none;">
 <div style="padding:15px; max-width:1400px; margin:auto;">
-<button onclick="showHome()" style="padding:14px 26px; border:none; border-radius:12px; background:#1c2430; color:white; font-size:19px; font-weight:bold; margin-bottom:20px; cursor:pointer;">← Geri Dön</button>
+<button onclick="goBack()" style="padding:14px 26px; border:none; border-radius:12px; background:#1c2430; color:white; font-size:19px; font-weight:bold; margin-bottom:20px; cursor:pointer;">← Geri Dön</button>
 <h2 id="brandTitle" style="margin-bottom:20px; font-size:32px; color:#1c2430;"></h2>
 <div id="productList"></div>
 </div>
@@ -447,7 +447,7 @@ const brands = {
     { name: "TEL PEYNİR 200 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektel.jpeg" },
     { name: "ÜÇGEN PEYNİR 12.5 GR X 24", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek3gen.jpeg" },
     { name: "KREM PEYNİR 400 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek400kr.jpeg" },
-    { name: "TENEKE PEYNİR 20 KG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektnk.jpeg" },
+    { name: "TENEKE PEYNİR 20 KG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektnk.jpeg" }
 ],
 "ECE": ["Yeşil Zeytin 1", "Siyah Zeytin 1"],
 "KAVAKLIDERE": ["Özel Ürün 1", "Özel Ürün 2"],
@@ -466,6 +466,15 @@ const brands = {
 "YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
 };
 
+// Tarayıcının kendi geri tuşu desteklendi (Telefonun altındaki geri tuşu)
+window.addEventListener('popstate', (event) => {
+if (event.state && event.state.page === 'product') {
+renderBrandContent(event.state.name, false);
+} else {
+showHomeContent(false);
+}
+});
+
 window.addEventListener('DOMContentLoaded', () => {
 let hash = window.location.hash.replace('#', '');
 if (hash) {
@@ -473,14 +482,17 @@ openBrand(decodeURIComponent(hash), false);
 }
 });
 
-function openBrand(name, updateHash = true){
+function openBrand(name, pushHistory = true){
+if (pushHistory) {
+history.pushState({ page: 'product', name: name }, '', '#' + encodeURIComponent(name));
+}
+renderBrandContent(name);
+}
+
+function renderBrandContent(name){
 document.getElementById("homeContainer").style.display="none";
 document.getElementById("productPage").style.display="block";
 document.getElementById("brandTitle").innerHTML = name + " Ürünleri";
-
-if(updateHash) {
-window.location.hash = encodeURIComponent(name);
-}
 
 let html='<div class="productGrid">';
 if(brands[name]){
@@ -501,11 +513,21 @@ document.getElementById("productList").innerHTML=html;
 window.scrollTo(0,0);
 }
 
-function showHome(){
+function showHome(pushHistory = true){
+if (pushHistory) {
+history.pushState({ page: 'home' }, '', window.location.pathname);
+}
+showHomeContent();
+}
+
+function showHomeContent(){
 document.getElementById("homeContainer").style.display="block";
 document.getElementById("productPage").style.display="none";
-window.location.hash = "";
 window.scrollTo(0,0);
+}
+
+function goBack(){
+window.history.back();
 }
 
 function toggleMenu(){
