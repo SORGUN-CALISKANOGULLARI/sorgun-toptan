@@ -101,7 +101,7 @@ color:#333;
 }
 
 /*========================*/
-/* YAN YANA DEV BÜYÜK ÜRÜN KUTULARI */
+/* YAN YANA MAKSİMUM BÜYÜK ÜRÜN KUTULARI */
 /*========================*/
 .productGrid {
 display: grid;
@@ -123,7 +123,7 @@ text-align: center;
 
 .productCell img {
 width: 100%;
-height: 260px; /* Resimleri diğer uygulamadaki gibi devasa büyük yaptık */
+height: 340px; /* Görselleri maksimum boyuta ulaştırdık */
 object-fit: contain;
 border-radius: 12px;
 margin-bottom: 12px;
@@ -132,12 +132,12 @@ padding: 5px;
 }
 
 .productCell .pName {
-font-size: 15px;
+font-size: 16px;
 font-weight: bold;
 color: #1c2430;
 width: 100%;
 background: #ffeb3b; /* Sarı etiket */
-padding: 10px 8px;
+padding: 12px 8px;
 border-radius: 8px;
 line-height: 1.3;
 }
@@ -436,8 +436,8 @@ const brands = {
     { name: "Deneme Ürün 13", image: "" },
     { name: "Deneme Ürün 14", image: "" },
     { name: "Deneme Ürün 15", image: "" },
-    { name: "Deneme 16", image: "" },
-    { name: "Deneme 17", image: "" },
+    { name: "Deneme Ürün 16", image: "" },
+    { name: "Deneme Ürün 17", image: "" },
     { name: "Deneme Ürün 18", image: "" },
     { name: "Deneme Ürün 19", image: "" },
     { name: "Deneme Ürün 20", image: "" }
@@ -460,7 +460,6 @@ const brands = {
 "YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
 };
 
-// Sayfa yenilendiğinde ana sayfaya atma sorunu çözüldü
 window.addEventListener('DOMContentLoaded', () => {
 let hash = window.location.hash.replace('#', '');
 if (hash) {
