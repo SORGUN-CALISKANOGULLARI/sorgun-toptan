@@ -24,25 +24,27 @@ header{
 position:sticky;
 top:0;
 z-index:999;
-height:82px;
+height:90px;
 background:#1c2430;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 18px;
+padding:0 22px;
 box-shadow:0 3px 10px rgba(0,0,0,.20);
 width:100%;
 }
 
+/* Hamburger Menü Çizgileri Büyütüldü */
 .menuBtn{
-font-size:40px;
+font-size:48px;
 color:white;
 cursor:pointer;
 user-select:none;
+line-height: 1;
 }
 
 .logoTitle{
-font-size:26px;
+font-size:28px;
 font-weight:bold;
 color:white;
 letter-spacing:1px;
@@ -52,7 +54,7 @@ text-align:center;
 }
 
 .searchBtn{
-font-size:34px;
+font-size:38px;
 color:white;
 cursor:pointer;
 user-select:none;
@@ -65,6 +67,7 @@ margin:auto;
 padding:20px;
 }
 
+/* Ana Sayfa Marka Kutuları ve Yazıları Büyütüldü */
 .brandGrid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -73,8 +76,8 @@ gap:22px;
 
 .brandCard{
 background:white;
-height:290px;
-border-radius:18px;
+height:320px; /* Kutu boyutu büyütüldü */
+border-radius:20px;
 box-shadow:0 5px 15px rgba(0,0,0,.12);
 display:flex;
 flex-direction:column;
@@ -82,6 +85,7 @@ justify-content:center;
 align-items:center;
 cursor:pointer;
 transition:.25s;
+padding: 15px;
 }
 
 .brandCard:hover{
@@ -89,32 +93,31 @@ transform:scale(1.03);
 }
 
 .brandCard img{
-width:90%;
-height:210px;
+width:100%;
+height:230px; /* Logolar büyütüldü */
 object-fit:contain;
 }
 
 .brandCard h3{
-margin-top:10px;
-font-size:20px;
-color:#333;
+margin-top:12px;
+font-size:22px; /* Marka isim yazıları büyütüldü */
+color:#222;
+font-weight: bold;
 }
 
-/*========================*/
-/* TEK SÜTUN DEVAASA BÜYÜK ÜRÜN KARTLARI */
-/*========================*/
+/* Yan Yana Ürün Kutuları */
 .productGrid {
-display: flex;
-flex-direction: column;
-gap: 20px;
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
 margin-top: 15px;
 }
 
 .productCell {
 background: white;
-border-radius: 20px;
-padding: 18px;
-box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+border-radius: 18px;
+padding: 15px;
+box-shadow:0 5px 15px rgba(0,0,0,.10);
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -123,28 +126,26 @@ text-align: center;
 
 .productCell img {
 width: 100%;
-height: 420px; /* Görselleri olabilecek en büyük ve net boyuta çıkardık */
+height: 320px; /* Bu değeri artırdıkça resimler daha da büyüyecektir */
 object-fit: contain;
 border-radius: 12px;
-margin-bottom: 15px;
+margin-bottom: 12px;
 background: #fafafa;
 padding: 5px;
 }
 
 .productCell .pName {
-font-size: 19px;
+font-size: 16px;
 font-weight: bold;
 color: #1c2430;
 width: 100%;
-background: #ffeb3b; /* Sarı etiket */
-padding: 14px 10px;
-border-radius: 10px;
-line-height: 1.4;
+background: #ffeb3b; 
+padding: 12px 8px;
+border-radius: 8px;
+line-height: 1.3;
 }
 
-/*========================*/
-/* ARAMA MODALI */
-/*========================*/
+/* Arama Modalı */
 .searchModal {
 position: fixed;
 top: 0;
@@ -208,9 +209,7 @@ padding: 4px 8px;
 border-radius: 6px;
 }
 
-/*========================*/
-/* HAMBURGER MENÜ */
-/*========================*/
+/* Hamburger Menü */
 .overlay{
 position:fixed;
 left:0;
@@ -412,8 +411,9 @@ padding-left:30px;
 <!-- ÜRÜN LİSTELEME SAYFASI -->
 <div id="productPage" style="display:none;">
 <div style="padding:15px; max-width:1400px; margin:auto;">
-<button onclick="showHome()" style="padding:12px 20px; border:none; border-radius:10px; background:#1c2430; color:white; font-size:17px; margin-bottom:20px; cursor:pointer;">← Geri</button>
-<h2 id="brandTitle" style="margin-bottom:20px; font-size:30px; color:#1c2430;"></h2>
+<!-- Geri Tuşu Büyütüldü -->
+<button onclick="showHome()" style="padding:14px 26px; border:none; border-radius:12px; background:#1c2430; color:white; font-size:19px; font-weight:bold; margin-bottom:20px; cursor:pointer;">← Geri Dön</button>
+<h2 id="brandTitle" style="margin-bottom:20px; font-size:32px; color:#1c2430;"></h2>
 <div id="productList"></div>
 </div>
 </div>
