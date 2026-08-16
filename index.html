@@ -7,7 +7,45 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
+}
 <style>
+  .productGrid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
+margin-top: 15px;
+}
+
+.productCell {
+background: white;
+border-radius: 15px;
+padding: 12px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+.productCell img {
+width: 100%;
+height: 140px;
+object-fit: contain;
+border-radius: 10px;
+margin-bottom: 10px;
+background: #f9f9f9;
+}
+
+.productCell .pName {
+font-size: 15px;
+font-weight: bold;
+color: #333;
+margin-bottom: 8px;
+width: 100%;
+background: #ffeb3b; /* Görseldeki sarı etiket havası */
+padding: 6px;
+border-radius: 6px;
+}
 *{
 margin:0;
 padding:0;
@@ -383,43 +421,33 @@ background:#e5e5e5;
 <script>
 const brands = {
 "AYTAÇ": [
-    { name: "Deneme 1", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYGGG.jpeg" },
-    { name: "Deneme 2", image: "" },
-    { name: "Deneme 3", image: "" },
-    { name: "Deneme 4", image: "" },
-    { name: "Deneme 5", image: "" },
-    { name: "Deneme 6", image: "" },
-    { name: "Deneme 7", image: "" },
-    { name: "Deneme 8", image: "" },
-    { name: "Deneme 9", image: "" },
-    { name: "Deneme 10", image: "" },
-    { name: "Deneme 11", image: "" },
-    { name: "Deneme 12", image: "" },
-    { name: "Deneme 13", image: "" },
-    { name: "Deneme 14", image: "" },
-    { name: "Deneme 15", image: "" },
-    { name: "Deneme 16", image: "" },
-    { name: "Deneme 17", image: "" },
-    { name: "Deneme 18", image: "" },
-    { name: "Deneme 19", image: "" },
-    { name: "Deneme 20", image: "" }
+    { name: "ÇERKEŞ DANA 1 KG\n1180,12 TL", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYGGG.jpeg" },
+    { name: "GLNKSL. DANA CRM 200 GR X 8", image: "" },
+    { name: "PİLİÇ KANGAL ACI 180 GR X 8\n67,80 TL", image: "" },
+    { name: "PİLİÇ KANGAL 180 X 8\n67,80 TL", image: "" },
+    { name: "DANA SUCUK KANGAL 280 GR\n291,14 TL", image: "" },
+    { name: "Deneme Ürün 6", image: "" },
+    { name: "Deneme Ürün 7", image: "" },
+    { name: "Deneme Ürün 8", image: "" },
+    { name: "Deneme Ürün 9", image: "" },
+    { name: "Deneme Ürün 10", image: "" }
 ],
-"EKİCİ": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"ECE": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"KAVAKLIDERE": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"ANCORA": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"DURU": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"ANGARA": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"VERONELLİ": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"ÖNCÜ": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"YAĞIZ EFE": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"KRAL": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"BAL & KAHVE": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"CATERING": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"PEGALOS": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"AKÇAY": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"VIORA": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"],
-"YENİ ÜRÜN": ["Deneme 1", "Deneme 2", "Deneme 3", "Deneme 4", "Deneme 5", "Deneme 6", "Deneme 7", "Deneme 8", "Deneme 9", "Deneme 10", "Deneme 11", "Deneme 12", "Deneme 13", "Deneme 14", "Deneme 15", "Deneme 16", "Deneme 17", "Deneme 18", "Deneme 19", "Deneme 20"]
+"EKİCİ": ["Peynir 1", "Peynir 2", "Kaşar 1", "Kaşar 2"],
+"ECE": ["Yeşil Zeytin 1", "Siyah Zeytin 1"],
+"KAVAKLIDERE": ["Özel Ürün 1", "Özel Ürün 2"],
+"ANCORA": ["Ancora Kahve", "Ancora Çikolata"],
+"DURU": ["Pilavlık Bulgur", "Kırmızı Mercimek"],
+"ANGARA": ["Angara Sos", "Angara Salça"],
+"VERONELLİ": ["Veronelli Makarna"],
+"ÖNCÜ": ["Domates Salçası", "Biber Salçası"],
+"YAĞIZ EFE": ["Sızma Zeytinyağı", "Kömürlük Yağ"],
+"KRAL": ["Kral Ton Balığı", "Kral Sardalya"],
+"BAL & KAHVE": ["Süzme Çiçek Balı", "Türk Kahvesi"],
+"CATERING": ["Endüstriyel Sos", "Toplu Tüketim Ürünleri"],
+"PEGALOS": ["Özel Gurme Ürün"],
+"AKÇAY": ["Akçay Süt Ürünleri"],
+"VIORA": ["Viora İçecek Çeşitleri"],
+"YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
 };
 
 function openBrand(name){
@@ -427,21 +455,21 @@ document.querySelector(".container").style.display="none";
 document.getElementById("productPage").style.display="block";
 document.getElementById("brandTitle").innerHTML = name + " Ürünleri";
 
-let html="";
+let html='<div class="productGrid">';
 if(brands[name]){
 brands[name].forEach(function(x){
-if(typeof x === 'object'){
-html+=`<div style="background:white; padding:15px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); display:flex; align-items:center; gap:20px;">
-<img src="${x.image}" style="width:100px; height:100px; object-fit:contain; border-radius:10px; background:#f9f9f9; padding:4px;" onerror="this.style.display='none'">
-<span style="font-size:20px; color:#333; font-weight:bold;">${x.name}</span>
+let pName = typeof x === 'object' ? x.name : x;
+let pImg = typeof x === 'object' && x.image ? x.image : 'https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp';
+
+html+=`<div class="productCell">
+<img src="${pImg}" onerror="this.style.display='none'">
+<div class="pName" style="white-space: pre-line;">${pName}</div>
 </div>`;
-}else{
-html+=`<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px; color:#333;">${x}</div>`;
-}
 });
 }else{
 html="<h3 style='color:#666;'>Bu markaya ürün eklenmedi.</h3>";
 }
+html+='</div>';
 document.getElementById("productList").innerHTML=html;
 window.scrollTo(0,0);
 }
@@ -459,16 +487,18 @@ document.getElementById("brandTitle").innerHTML = "Tüm Ürünler ve Markalar";
 
 let html = "";
 for (let brandName in brands) {
-html += `<h3 style="margin:20px 0 10px 0; color:#1c2430; border-bottom:2px solid #1c2430; padding-bottom:5px;">📌 ${brandName}</h3>`;
+html += `<h3 style="margin:25px 0 12px 0; color:#1c2430; border-bottom:3px solid #1c2430; padding-bottom:8px; font-size:22px;">📌 ${brandName}</h3>`;
+html += '<div class="productGrid">';
 brands[brandName].forEach(function(x){
-if(typeof x === 'object'){
-html += `<div style="background:white; padding:15px; border-radius:12px; margin-bottom:10px; box-shadow:0 3px 8px rgba(0,0,0,.08); display:flex; align-items:center; gap:15px;">
-<img src="${x.image}" style="width:80px; height:80px; object-fit:contain; border-radius:8px; background:#f9f9f9; padding:3px;" onerror="this.style.display='none'">
-<span style="font-size:18px; color:#333; font-weight:bold;">${x.name}</span></div>`;
-}else{
-html += `<div style="background:white; padding:15px; border-radius:12px; margin-bottom:10px; box-shadow:0 3px 8px rgba(0,0,0,.08); font-size:17px;">${x}</div>`;
-}
+let pName = typeof x === 'object' ? x.name : x;
+let pImg = typeof x === 'object' && x.image ? x.image : 'https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp';
+
+html += `<div class="productCell">
+<img src="${pImg}" onerror="this.style.display='none'">
+<div class="pName" style="white-space: pre-line;">${pName}</div>
+</div>`;
 });
+html += '</div>';
 }
 document.getElementById("productList").innerHTML = html;
 window.scrollTo(0,0);
@@ -528,7 +558,7 @@ html += `<div class="searchItemCard" onclick="closeSearchModal(); openBrand('${b
 });
 }
 if (foundCount === 0) {
-html = `<div style="color:white; text-align:center; margin-top:30px; font-size:18px;">Aradığınız kriterlere uygun ürün bulunamadı.</div>`;
+html = `<div style="color:white; text-align:center; margin-top:30px; font-size:18px;">Aradığınız kriterlere uygun ürünler bulunamadı.</div>`;
 }
 resultsContainer.innerHTML = html;
 }
