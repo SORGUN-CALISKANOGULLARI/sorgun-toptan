@@ -7,48 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
-}
 <style>
-.productGrid {
-display: flex;
-flex-direction: column;
-gap: 20px;
-margin-top: 15px;
-}
-
-.productCell {
-background: white;
-border-radius: 20px;
-padding: 18px;
-box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-display: flex;
-flex-direction: column;
-align-items: center;
-text-align: center;
-}
-
-.productCell img {
-width: 100%;
-height: 240px; /* Görseli devasa ve net yaptık */
-object-fit: contain;
-border-radius: 12px;
-margin-bottom: 15px;
-background: #fafafa;
-padding: 5px;
-}
-
-.productCell .pName {
-font-size: 17px;
-font-weight: bold;
-color: #1c2430;
-width: 100%;
-background: #ffeb3b; /* İstediğiniz sarı etiket tasarımı */
-padding: 12px 10px;
-border-radius: 10px;
-box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-line-height: 1.4;
-}
-
 *{
 margin:0;
 padding:0;
@@ -142,6 +101,48 @@ color:#333;
 }
 
 /*========================*/
+/* YAN YANA BÜYÜK ÜRÜN KUTULARI */
+/*========================*/
+.productGrid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
+margin-top: 15px;
+}
+
+.productCell {
+background: white;
+border-radius: 18px;
+padding: 15px;
+box-shadow:0 5px 15px rgba(0,0,0,.10);
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+}
+
+.productCell img {
+width: 100%;
+height: 180px; /* Görseller artık yan yana tasarımda bile çok büyük ve net */
+object-fit: contain;
+border-radius: 12px;
+margin-bottom: 12px;
+background: #fafafa;
+padding: 5px;
+}
+
+.productCell .pName {
+font-size: 15px;
+font-weight: bold;
+color: #1c2430;
+width: 100%;
+background: #ffeb3b; /* Sarı etiket */
+padding: 10px 8px;
+border-radius: 8px;
+line-height: 1.3;
+}
+
+/*========================*/
 /* ARAMA MODALI */
 /*========================*/
 .searchModal {
@@ -208,7 +209,7 @@ border-radius: 6px;
 }
 
 /*========================*/
-/* HAMBURGER MENÜ & KAYDIRMA */
+/* HAMBURGER MENÜ (KAYDIRMA KAPATILDI) */
 /*========================*/
 .overlay{
 position:fixed;
@@ -272,10 +273,6 @@ transition:.2s;
 background:#f2f2f2;
 padding-left:30px;
 }
-
-.sidebar li:active{
-background:#e5e5e5;
-}
 </style>
 </head>
 
@@ -283,7 +280,7 @@ background:#e5e5e5;
 
 <header>
 <div class="menuBtn" onclick="toggleMenu()">☰</div>
-<div class="logoTitle" onclick="showAllProducts()">ÇALIŞKANOĞULLARI</div>
+<div class="logoTitle" onclick="showHome()">ÇALIŞKANOĞULLARI</div>
 <div class="searchBtn" onclick="openSearchModal()">🔍</div>
 </header>
 
@@ -323,7 +320,7 @@ background:#e5e5e5;
 </div>
 
 <!-- ANA SAYFA MARKA LİSTESİ -->
-<div class="container">
+<div class="container" id="homeContainer">
 <div class="brandGrid">
 <div class="brandCard" onclick="openBrand('AYTAÇ')">
 <img src="https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/aytac.jpeg">
@@ -443,7 +440,7 @@ const brands = {
     { name: "Deneme Ürün 17", image: "" },
     { name: "Deneme Ürün 18", image: "" },
     { name: "Deneme Ürün 19", image: "" },
-    { name: "Deneme 20", image: "" }
+    { name: "Deneme Ürün 20", image: "" }
 ],
 "EKİCİ": ["Peynir 1", "Peynir 2", "Kaşar 1", "Kaşar 2"],
 "ECE": ["Yeşil Zeytin 1", "Siyah Zeytin 1"],
@@ -463,16 +460,27 @@ const brands = {
 "YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
 };
 
-function openBrand(name){
-document.querySelector(".container").style.display="none";
+// Sayfa yüklendiğinde hafızadaki duruma göre (URL hash sistemine göre) sayfayı otomatik açar, yenilendiğinde ana sayfaya atmaz
+window.addEventListener('DOMContentLoaded', () => {
+let hash = window.location.hash.replace('#', '');
+if (hash) {
+openBrand(decodeURIComponent(hash), false);
+}
+});
+
+function openBrand(name, updateHash = true){
+document.getElementById("homeContainer").style.display="none";
 document.getElementById("productPage").style.display="block";
 document.getElementById("brandTitle").innerHTML = name + " Ürünleri";
+
+if(updateHash) {
+window.location.hash = encodeURIComponent(name);
+}
 
 let html='<div class="productGrid">';
 if(brands[name]){
 brands[name].forEach(function(x){
 let pName = typeof x === 'object' ? x.name : x;
-// Eğer ürünün resmi eklenmemişse otomatik olarak varsayılan "YENİ ÜRÜN" görselini gösterir
 let pImg = typeof x === 'object' && x.image ? x.image : 'https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp';
 
 html+=`<div class="productCell">
@@ -489,32 +497,9 @@ window.scrollTo(0,0);
 }
 
 function showHome(){
-document.querySelector(".container").style.display="block";
+document.getElementById("homeContainer").style.display="block";
 document.getElementById("productPage").style.display="none";
-window.scrollTo(0,0);
-}
-
-function showAllProducts(){
-document.querySelector(".container").style.display="none";
-document.getElementById("productPage").style.display="block";
-document.getElementById("brandTitle").innerHTML = "Tüm Ürünler ve Markalar";
-
-let html = "";
-for (let brandName in brands) {
-html += `<h3 style="margin:25px 0 12px 0; color:#1c2430; border-bottom:3px solid #1c2430; padding-bottom:8px; font-size:22px;">📌 ${brandName}</h3>`;
-html += '<div class="productGrid">';
-brands[brandName].forEach(function(x){
-let pName = typeof x === 'object' ? x.name : x;
-let pImg = typeof x === 'object' && x.image ? x.image : 'https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp';
-
-html += `<div class="productCell">
-<img src="${pImg}">
-<div class="pName" style="white-space: pre-line;">${pName}</div>
-</div>`;
-});
-html += '</div>';
-}
-document.getElementById("productList").innerHTML = html;
+window.location.hash = "";
 window.scrollTo(0,0);
 }
 
@@ -534,7 +519,7 @@ overlay.classList.remove("active");
 
 function filterByCategory(categoryName) {
 closeMenu();
-document.querySelector(".container").style.display="none";
+document.getElementById("homeContainer").style.display="none";
 document.getElementById("productPage").style.display="block";
 document.getElementById("brandTitle").innerHTML = "Kategori: " + categoryName;
 let html = `<div style="background:white; padding:18px; border-radius:15px; margin-bottom:15px; box-shadow:0 3px 10px rgba(0,0,0,.10); font-size:18px;">${categoryName} kategorisine ait toptan ürünler listelenmektedir.</div>`;
@@ -577,27 +562,5 @@ html = `<div style="color:white; text-align:center; margin-top:30px; font-size:1
 resultsContainer.innerHTML = html;
 }
 
-let touchStartX = 0;
-let touchEndX = 0;
-document.addEventListener('touchstart', e => {
-touchStartX = e.changedTouches[0].screenX;
-});
-document.addEventListener('touchend', e => {
-touchEndX = e.changedTouches[0].screenX;
-handleGesture();
-});
-function handleGesture() {
-let diff = touchEndX - touchStartX;
-if (diff > 80 && touchStartX < 60) {
-let sidebar = document.getElementById("sidebar");
-if (!sidebar.classList.contains("active")) {
-toggleMenu();
-}
-} else if (diff < -80) {
-let sidebar = document.getElementById("sidebar");
-if (sidebar.classList.contains("active")) {
-closeMenu();
-}
-}
-}
+// Sağdan sola kaydırma özelliği tamamen kaldırılmıştır, menü sadece 3 çizgiden açılır.
 </script>
