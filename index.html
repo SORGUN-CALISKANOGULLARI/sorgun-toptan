@@ -9,18 +9,18 @@
 
 }
 <style>
-  .productGrid {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 15px;
+.productGrid {
+display: flex;
+flex-direction: column;
+gap: 20px;
 margin-top: 15px;
 }
 
 .productCell {
 background: white;
-border-radius: 15px;
-padding: 12px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+border-radius: 20px;
+padding: 18px;
+box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -29,23 +29,26 @@ text-align: center;
 
 .productCell img {
 width: 100%;
-height: 140px;
+height: 240px; /* Görseli devasa ve net yaptık */
 object-fit: contain;
-border-radius: 10px;
-margin-bottom: 10px;
-background: #f9f9f9;
+border-radius: 12px;
+margin-bottom: 15px;
+background: #fafafa;
+padding: 5px;
 }
 
 .productCell .pName {
-font-size: 15px;
+font-size: 17px;
 font-weight: bold;
-color: #333;
-margin-bottom: 8px;
+color: #1c2430;
 width: 100%;
-background: #ffeb3b; /* Görseldeki sarı etiket havası */
-padding: 6px;
-border-radius: 6px;
+background: #ffeb3b; /* İstediğiniz sarı etiket tasarımı */
+padding: 12px 10px;
+border-radius: 10px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+line-height: 1.4;
 }
+
 *{
 margin:0;
 padding:0;
@@ -422,15 +425,25 @@ background:#e5e5e5;
 const brands = {
 "AYTAÇ": [
     { name: "ÇERKEŞ DANA 1 KG\n1180,12 TL", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYGGG.jpeg" },
-    { name: "GLNKSL. DANA CRM 200 GR X 8", image: "" },
     { name: "PİLİÇ KANGAL ACI 180 GR X 8\n67,80 TL", image: "" },
-    { name: "PİLİÇ KANGAL 180 X 8\n67,80 TL", image: "" },
     { name: "DANA SUCUK KANGAL 280 GR\n291,14 TL", image: "" },
+    { name: "Deneme Ürün 4", image: "" },
+    { name: "Deneme Ürün 5", image: "" },
     { name: "Deneme Ürün 6", image: "" },
     { name: "Deneme Ürün 7", image: "" },
     { name: "Deneme Ürün 8", image: "" },
     { name: "Deneme Ürün 9", image: "" },
-    { name: "Deneme Ürün 10", image: "" }
+    { name: "Deneme Ürün 10", image: "" },
+    { name: "Deneme Ürün 11", image: "" },
+    { name: "Deneme Ürün 12", image: "" },
+    { name: "Deneme Ürün 13", image: "" },
+    { name: "Deneme Ürün 14", image: "" },
+    { name: "Deneme Ürün 15", image: "" },
+    { name: "Deneme Ürün 16", image: "" },
+    { name: "Deneme Ürün 17", image: "" },
+    { name: "Deneme Ürün 18", image: "" },
+    { name: "Deneme Ürün 19", image: "" },
+    { name: "Deneme 20", image: "" }
 ],
 "EKİCİ": ["Peynir 1", "Peynir 2", "Kaşar 1", "Kaşar 2"],
 "ECE": ["Yeşil Zeytin 1", "Siyah Zeytin 1"],
@@ -459,10 +472,11 @@ let html='<div class="productGrid">';
 if(brands[name]){
 brands[name].forEach(function(x){
 let pName = typeof x === 'object' ? x.name : x;
+// Eğer ürünün resmi eklenmemişse otomatik olarak varsayılan "YENİ ÜRÜN" görselini gösterir
 let pImg = typeof x === 'object' && x.image ? x.image : 'https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp';
 
 html+=`<div class="productCell">
-<img src="${pImg}" onerror="this.style.display='none'">
+<img src="${pImg}">
 <div class="pName" style="white-space: pre-line;">${pName}</div>
 </div>`;
 });
@@ -494,7 +508,7 @@ let pName = typeof x === 'object' ? x.name : x;
 let pImg = typeof x === 'object' && x.image ? x.image : 'https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp';
 
 html += `<div class="productCell">
-<img src="${pImg}" onerror="this.style.display='none'">
+<img src="${pImg}">
 <div class="pName" style="white-space: pre-line;">${pName}</div>
 </div>`;
 });
@@ -558,7 +572,7 @@ html += `<div class="searchItemCard" onclick="closeSearchModal(); openBrand('${b
 });
 }
 if (foundCount === 0) {
-html = `<div style="color:white; text-align:center; margin-top:30px; font-size:18px;">Aradığınız kriterlere uygun ürünler bulunamadı.</div>`;
+html = `<div style="color:white; text-align:center; margin-top:30px; font-size:18px;">Aradığınız kriterlere uygun ürün bulunamadı.</div>`;
 }
 resultsContainer.innerHTML = html;
 }
