@@ -101,7 +101,7 @@ color:#333;
 }
 
 /*========================*/
-/* YAN YANA BÜYÜK ÜRÜN KUTULARI */
+/* YAN YANA DEV BÜYÜK ÜRÜN KUTULARI */
 /*========================*/
 .productGrid {
 display: grid;
@@ -123,7 +123,7 @@ text-align: center;
 
 .productCell img {
 width: 100%;
-height: 180px; /* Görseller artık yan yana tasarımda bile çok büyük ve net */
+height: 260px; /* Resimleri diğer uygulamadaki gibi devasa büyük yaptık */
 object-fit: contain;
 border-radius: 12px;
 margin-bottom: 12px;
@@ -209,7 +209,7 @@ border-radius: 6px;
 }
 
 /*========================*/
-/* HAMBURGER MENÜ (KAYDIRMA KAPATILDI) */
+/* HAMBURGER MENÜ (YANDAN KAYDIRMA KAPALI) */
 /*========================*/
 .overlay{
 position:fixed;
@@ -436,8 +436,8 @@ const brands = {
     { name: "Deneme Ürün 13", image: "" },
     { name: "Deneme Ürün 14", image: "" },
     { name: "Deneme Ürün 15", image: "" },
-    { name: "Deneme Ürün 16", image: "" },
-    { name: "Deneme Ürün 17", image: "" },
+    { name: "Deneme 16", image: "" },
+    { name: "Deneme 17", image: "" },
     { name: "Deneme Ürün 18", image: "" },
     { name: "Deneme Ürün 19", image: "" },
     { name: "Deneme Ürün 20", image: "" }
@@ -460,7 +460,7 @@ const brands = {
 "YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
 };
 
-// Sayfa yüklendiğinde hafızadaki duruma göre (URL hash sistemine göre) sayfayı otomatik açar, yenilendiğinde ana sayfaya atmaz
+// Sayfa yenilendiğinde ana sayfaya atma sorunu çözüldü
 window.addEventListener('DOMContentLoaded', () => {
 let hash = window.location.hash.replace('#', '');
 if (hash) {
@@ -561,6 +561,7 @@ html = `<div style="color:white; text-align:center; margin-top:30px; font-size:1
 }
 resultsContainer.innerHTML = html;
 }
-
-// Sağdan sola kaydırma özelliği tamamen kaldırılmıştır, menü sadece 3 çizgiden açılır.
 </script>
+
+</body>
+</html>
