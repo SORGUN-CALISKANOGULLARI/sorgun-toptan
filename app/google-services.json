@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "553268716054",
+    "project_id": "toptan-6817f",
+    "storage_bucket": "toptan-6817f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553268716054:android:c3f140e6e10a75cbaecb37",
+        "android_client_info": {
+          "package_name": "com.sezo623.kjhk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRNOxgb5IX2yes9BBaL9g5124Cp2j6GOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
