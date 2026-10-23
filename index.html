@@ -92,7 +92,7 @@ transform:scale(1.03);
 
 .brandCard img{
 width:100%;
-height:230px;
+height:260px;
 object-fit:contain;
 }
 
@@ -103,7 +103,7 @@ color:#222;
 font-weight: bold;
 }
 
-/* ÜRÜN KUTULARI VE BÜYÜK YAZILAR */
+/* ÜRÜN KUTULARI VE BÜYÜK GÖRSELLER */
 .productGrid {
 display: grid;
 grid-template-columns: repeat(2, 1fr);
@@ -124,7 +124,7 @@ text-align: center;
 
 .productCell img {
 width: 100%;
-height: 240px; 
+height: 320px; /* Görseller büyütüldü */
 object-fit: contain;
 border-radius: 12px;
 margin-bottom: 12px;
@@ -207,7 +207,7 @@ padding: 4px 8px;
 border-radius: 6px;
 }
 
-/* HAMBURGER MENÜ VE BÜYÜK YAZILAR */
+/* HAMBURGER MENÜ */
 .overlay{
 position:fixed;
 left:0;
@@ -419,119 +419,138 @@ padding-left:30px;
 <script>
 const brands = {
 "AYTAÇ": [
+    { name: "ÇİFTLİK MARGARİN 250 GR X 48", image: "https://i.ibb.co/1fXQ3prf/marga.jpg" },
+    { name: "AYTAÇ BEYAZ P. 800 GR X 6", image: "https://i.ibb.co/G31m9HXw/aytacbyz.jpg" },
     { name: "YARIM YAĞLI SÜT 1 LT X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYST%20(2).jpeg" },
-    { name: "FINDIKLI KAKAO KREMASI 700 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYGGG.jpeg" },
-    { name: "SİPŞAK HİNDİ SALAM 50 GR X 18", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyslmhac.jpeg" },
-    { name: "ŞİPŞAK MACAR SALAM 40 GR X 12 ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyslmacp.jpeg" },
-    { name: "ŞİPŞAK PİLİÇ SALAM 40 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayymacar.jpeg" },
-    { name: "ÇİFTLİK SOSİS 225 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayysos225.jpeg" },
-    { name: "KOKTEYL SOSİS 240 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYSSS.jpeg" },
+    { name: "KAKAOLU FINDIK KREMA 700 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYGGG.jpeg" },
+    { name: "ŞİPŞAK PİLİÇ 40 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyslmacp.jpeg" },
+    { name: "ŞİPŞAK MACAR 40 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayymacar.jpeg" },
+    { name: "ŞİPŞAK HİNDİ 50 GR X 18", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyslmhac.jpeg" },
+    { name: "GURME HİNDİ FÜME 60 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayhfme60.jpeg" },
+    { name: "HİNDİ FÜME 60 GR X 9", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayhndfm.jpeg" },
     { name: "PİLİÇ SALAM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY200P.jpeg" },
-    { name: "ÇİFTLİK SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycps.jpeg" },
+    { name: "FISTIKLI HİNDİ SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYHS500.jpeg" },
+    { name: "Ç. PİLİÇ SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycps.jpeg" },
     { name: "PİLİÇ SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY500PS.jpeg" },
-    { name: "DANA PARMAK 400 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayypard.jpeg" },
+    { name: "KOKTEYL SOSİS 240 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYSSS.jpeg" },
+    { name: "ÇİFTLİK SOSİS 225 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYCSSS.jpeg" },
     { name: "PİLİÇ PARMAK 400 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyparp.jpeg" },
-    { name: "PİLİÇ SUCUK ACILI 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180a.jpeg" },
-    { name: "PİLİÇ SUCUK ACISIZ 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180.jpeg" },
-    { name: "DANA KANGAL SUCUK CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrm.jpg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrkes.jpeg" }
+    { name: "DANA PARMAK 400 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayypard.jpeg" },
+    { name: "KANGAL PİLİÇ ACILI 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180a.jpeg" },
+    { name: "KANGAL PİLİÇ ACISIZ 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180.jpeg" },
+    { name: "DANA KANGAL CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrm.jpeg" },
+    { name: "DANA KANGAL 280 GR X 7", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY280SCK.jpeg" },
+    { name: "ÇERKEŞ DANA 1 KG X 1", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrkes.jpeg" },
+    { name: "GELENEKSEL DANA 1 KG X 1", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyglnk.jpeg" },
+    { name: "PİKNİK VİŞNE 20 GR X 125", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYPNK20V.jpeg" },
+    { name: "PİKNİK ÇİLEK 20 GR X 125", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYPNK20C.jpeg" },
+    { name: "PİKNİK KAYISI 20 GR X 125", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYPNK20.jpeg" },
+    { name: "TOST PEYNİRİ 1 KG X 6", image: "https://i.ibb.co/gsn5fSY/aytost.jpg" },
+    { name: "GELENEKSEL SUCUK 450 GR X 7", image: "https://i.ibb.co/7NbZDP9/aygelenek450.jpg" }
 ],
 "EKİCİ": [
-    { name: "BEYAZ PEYNİR 800 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek800b.jpeg" },
-    { name: "BEYAZ PEYNİR 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek500be.jpeg" },
-    { name: "KLASİK PEYNİR 450 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ekklsk.jpeg" },
-    { name: "SÜZME PEYNİR 400 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eksuz.jpeg" },
+    { name: "EKİCİ BEYAZ 800 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek800b.jpeg" },
+    { name: "EKİCİ BEYAZ 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek500be.jpeg" },
+    { name: "EKİCİ KLASİK 450 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ekklsk.jpeg" },
+    { name: "EKİCİ SÜZME 400 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eksuz.jpeg" },
+    { name: "PEYNİR ÇUBUKLARI 200 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ekcbk.jpeg" },
     { name: "TOP PEYNİR 200 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektop.jpeg" },
-    { name: "ÇUBUK PEYNİR 200 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ekcbk.jpeg" },
     { name: "KAŞAR PEYNİR 600 GR X 9", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek600k.jpeg" },
     { name: "TEL PEYNİR 200 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektel.jpeg" },
-    { name: "ÜÇGEN PEYNİR 12.5 GR X 24", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek3gen.jpeg" },
+    { name: "ÜÇGEN PEYNİR 8*12,5 GR X 24", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek3gen.jpeg" },
     { name: "KREM PEYNİR 400 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek400kr.jpeg" },
-    { name: "TENEKE PEYNİR 20 KG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektnk.jpeg" }
+    { name: "TENEKE PEYNİR 20 KG X 1", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektnk.jpeg" }
 ],
 "ECE": [
-    { name: "LEONE ACI SOS 360 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceleonep.jpeg" },
-    { name: "LEONE PARÇACIKLI ACI SOS GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceleone.jpeg" },
-    { name: "LIGHT ZEYTİN TNK 1 KG X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecelght.jpeg" },
-    { name: "DİLİMLİ ZEYTİN SİYAH 710 GR X 12 ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecedlmls.jpeg" },
-    { name: "DİLİMLİ YEŞİL ZEYTİN 710 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecedlml.jpeg" },
-    { name: "ÇİZİK ZEYTİN 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece700czk.jpeg" },
-    { name: "BİBERLİ ZEYTİN 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece700bbr.jpeg" },
-    { name: "KIRMA ZEYTİN 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece700krm1.jpg" },
-    { name: "KOKTEYL ZEYTİN 710 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE7001YES.jpg" },
-    { name: "IZGARA ZEYTİN 660 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE7001ZGR.jpg" },
-    { name: "KOKTEYL ZEYTİN 990 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE9902YERS.jpg" },
-    { name: "KIRMA ZEYTİN 990 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE9001KIR.jpg" },
-    { name: "ÇİZİK ZEYTİN 990 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece900czk.jpeg" },
-    { name: "BİBERLİ ZEYTİN 990 GR*6 ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece900bbr21.jpg" },
-    { name: "DANA KANGAL SUCUK CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1600bbr.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1600czk.jpeg" },
-    { name: "DFG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE1540YES%20(1).png" },
-    { name: "FGHFG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE1580KRM.png" },
-    { name: "GFDG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecepetysl.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecepetkrm.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1bbr.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecetnk.jpeg" },
-    { name: "22222", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece500uzm.jpeg" },
-    { name: "DANA PARMAK 400 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1uzm.jpeg" },
-    { name: "PİLİÇ PARMAK 400 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece2uzm.jpeg" },
-    { name: "PİLİÇ SUCUK ACILI 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece5uzm.jpeg" },
-    { name: "PİLİÇ SUCUK ACISIZ 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece2byz.jpeg" },
-    { name: "DANA KANGAL SUCUK CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceelma500.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1elma.jpeg" },
-    { name: "FGHFGGG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece500slt.jpeg" },
-    { name: "FGH6N", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceslt750.jpeg" },
-    { name: "567HFG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecenar250.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecenar1.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece500lmn.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1lmn.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecelmnt.jpeg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecekrdt.jpeg" }, 
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecevsn.jpeg" },
+    { name: "LEONE SOS 360 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceleonep.jpeg" },
+    { name: "LEONE SOS PARÇ. 360 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceleone.jpeg" },
+    { name: "ECE LIGHT 1 KG X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecelight.jpeg" },
+    { name: "DİLİMLİ YEŞİL 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecedlml.jpeg" },
+    { name: "DİLİMLİ SİYAH 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecedlmls.jpeg" },
+    { name: "IZGARA 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE7001ZGR.jpeg" },
+    { name: "ÇİZİK 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece700czk.jpeg" },
+    { name: "KIRMA 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece700krm1.jpeg" },
+    { name: "BİBERLİ 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece700bbr.jpeg" },
+    { name: "YEŞİL 700 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE7001YES.jpeg" },
+    { name: "BİBERLİ 990 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece900bbr.jpeg" },
+    { name: "YEŞİL 990 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE9902YERS.jpeg" },
+    { name: "KIRMA 990 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE9001KIR.jpeg" },
+    { name: "ÇİZİK 990 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece900czk.jpeg" },
+    { name: "YEŞİL 1540 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE1540YES%20(1).png" },
+    { name: "KIRMA 1580 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ECE1580KRM.png" },
+    { name: "BİBERLİ 1500 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1600bbr.jpeg" },
+    { name: "ÇİZİK 1600 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1600czk.jpeg" },
+    { name: "IZGARA TENEKE 9 KG X 1", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecetnk.jpeg" },
+    { name: "KARADUT 3 LT X 4", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecekrdt.jpeg" },
+    { name: "LİMONATA 3 LT X 4", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecelmnt.jpeg" },
+    { name: "ÜZÜM SİRKESİ 1 LT X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1uzm.jpeg" },
+    { name: "ELMA SİRKESİ 1 LT X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1elma.jpeg" },
+    { name: "ELMA SİRKESİ 500 ML X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceelma500.jpeg" },
+    { name: "BEYAZ SİRKE 2 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece2byz.jpeg" },
+    { name: "%100 NAR EŞKİSİ 250 ML X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ecenar250.jpeg" },
+    { name: "SALATA SOSU 1 KG X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eceslt750.jpeg" },
+    { name: "SALATA SOSU 650 GR X 20", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece500slt.jpeg" },
+    { name: "LİMON SUYU 1 LT X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece1lmn.jpeg" },
+    { name: "LİMON SUYU 500 ML X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ece500lmn.jpeg" }
 ],
 "KAVAKLIDERE": [
-    { name: "BEYAZ PEYNİR 800 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek800b.jpeg" },
-    { name: "BEYAZ PEYNİR 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek500be.jpeg" },
-    { name: "KLASİK PEYNİR 450 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ekklsk.jpeg" },
-    { name: "SÜZME PEYNİR 400 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/eksuz.jpeg" },
-    { name: "TOP PEYNİR 200 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektop.jpeg" },
-    { name: "ÇUBUK PEYNİR 200 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ekcbk.jpeg" },
-    { name: "KAŞAR PEYNİR 600 GR X 9", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek600k.jpeg" },
-    { name: "TEL PEYNİR 200 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektel.jpeg" },
-    { name: "ÜÇGEN PEYNİR 12.5 GR X 24", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek3gen.jpeg" },
-    { name: "KREM PEYNİR 400 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ek400kr.jpeg" },
-    { name: "TENEKE PEYNİR 20 KG", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ektnk.jpeg" }
+    { name: "5 LİK ÜZÜM X 4", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk5uzm.jpeg" },
+    { name: "2 LİK ÜZÜM X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk2uzm.jpeg" },
+    { name: "750 ÜZÜM X 20", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk750uzm.jpeg" },
+    { name: "750 ELMA X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk750elma.jpeg" },
+    { name: "500 ELMA X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk500elma.jpeg" },
+    { name: "500 CAM ELMA X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk500camelma.jpeg" },
+    { name: "2 LT BEYAZ X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk2byz.jpeg" },
+    { name: "750 BEYAZ X 20", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk750beyaz.jpeg" },
+    { name: "ŞALGAM 1 LT ACISIZ X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk1slgmacsz1.jpeg" },
+    { name: "ŞALGAM 1 LT ACILI X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk1slgmpet.jpeg" },
+    { name: "ŞALGAM 300 ML ACILI X 24", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk300aslg.jpeg" },
+    { name: "ŞALGAM 300 ACISIZ X 24", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/kvk300slgm.jpeg" }
 ],
 "ANCORA": [
-    { name: "YARIM YAĞLI SÜT 1 LT X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYST%20(2).jpeg" },
-    { name: "FINDIKLI KAKAO KREMASI 700 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYGGG.jpeg" },
-    { name: "SİPŞAK HİNDİ SALAM 50 GR X 18", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyslmhac.jpeg" },
-    { name: "ŞİPŞAK MACAR SALAM 40 GR X 12 ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyslmacp.jpeg" },
-    { name: "ŞİPŞAK PİLİÇ SALAM 40 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayymacar.jpeg" },
-    { name: "ÇİFTLİK SOSİS 225 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayysos225.jpeg" },
-    { name: "KOKTEYL SOSİS 240 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYYSSS.jpeg" },
-    { name: "PİLİÇ SALAM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY200P.jpeg" },
-    { name: "ÇİFTLİK SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycps.jpeg" },
-    { name: "PİLİÇ SALAM 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/AYY500PS.jpeg" },
-    { name: "DANA PARMAK 400 GR X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayypard.jpeg" },
-    { name: "PİLİÇ PARMAK 400 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayyparp.jpeg" },
-    { name: "PİLİÇ SUCUK ACILI 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180a.jpeg" },
-    { name: "PİLİÇ SUCUK ACISIZ 180 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayy180.jpeg" },
-    { name: "DANA KANGAL SUCUK CRM 200 GR X 8", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrm.jpg" },
-    { name: "DANA ÇERKEŞ SUCUK", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ayycrkes.jpeg" }
+    { name: "İNCİR ÖZÜ 640 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ancc%C4%B1r.jpeg" },
+    { name: "KARADUT ÖZÜ 640 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/ancdut.jpeg" },
+    { name: "ORMAN PERİSİ 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrorman.jpeg" },
+    { name: "BÖĞÜRTLEN 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrbgrt.jpeg" },
+    { name: "ELMA 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancelma.jpeg" },
+    { name: "AHUDUDU 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrahdudu.jpeg" },
+    { name: "ATEŞ TOPU 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrates.jpeg" },
+    { name: "ERİK 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancerik.jpeg" },
+    { name: "KARADUT 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrkara.jpeg" },
+    { name: "KAYISI 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrkys.jpeg" },
+    { name: "KARA ÜZÜM 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrsuyuuzm.jpeg" },
+    { name: "NAR 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrnar.jpeg" },
+    { name: "PORTAKAL 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrpor.jpeg" },
+    { name: "ŞEFTALİ 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrseft.jpeg" },
+    { name: "TROPİKAL 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrtro.jpeg" },
+    { name: "ŞIRA ÜZÜM 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrsra.jpeg" },
+    { name: "VİŞNE 1 LT X 6", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/22ancrvsne.jpeg" }
 ],
-"DURU": ["Pilavlık Bulgur", "Kırmızı Mercimek"],
-"ANGARA": ["Angara Sos", "Angara Salça"],
-"VERONELLİ": ["Veronelli Makarna"],
-"ÖNCÜ": ["Domates Salçası", "Biber Salçası"],
-"YAĞIZ EFE": ["Sızma Zeytinyağı", "Kömürlük Yağ"],
-"KRAL": ["Kral Ton Balığı", "Kral Sardalya"],
-"BAL & KAHVE": ["Süzme Çiçek Balı", "Türk Kahvesi"],
-"CATERING": ["Endüstriyel Sos", "Toplu Tüketim Ürünleri"],
-"PEGALOS": ["Özel Gurme Ürün"],
+"DURU":  [ ],
+"ANGARA": [ ],
+"VERONELLİ": [ ],
+"ÖNCÜ": [ "Domates Salçası", "Biber Salçası" ],
+"YAĞIZ EFE": [ "Sızma Zeytinyağı", "Kömürlük Yağ" ],
+"KRAL": [ "Kral Ton Balığı", "Kral Sardalya" ],
+"BAL & KAHVE": [ "Süzme Çiçek Balı", "Türk Kahvesi" ],
+"CATERING": [ "Endüstriyel Sos", "Toplu Tüketim Ürünleri" ],
+"PEGALOS": [
+    { name: "KEDİ ÜRÜNLERİ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp", isCategory: "KEDİ ÜRÜNLERİ" },
+    { name: "KÖPEK ÜRÜNLERİ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp", isCategory: "KÖPEK ÜRÜNLERİ" },
+    { name: "KUŞ ÜRÜNLERİ", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp", isCategory: "KUŞ ÜRÜNLERİ" }
+],
+"KEDİ ÜRÜNLERİ": [
+    { name: "KEDİ MAMASI ÖRNEK 1 KG X 10", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp" }
+],
+"KÖPEK ÜRÜNLERİ": [
+    { name: "KÖPEK MAMASI ÖRNEK 3 KG X 5", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp" }
+],
+"KUŞ ÜRÜNLERİ": [
+    { name: "KUŞ YEMİ ÖRNEK 500 GR X 12", image: "https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp" }
+],
 "AKÇAY": ["Akçay Süt Ürünleri"],
-"VIORA": ["Viora İçecek Çeşitleri"],
-"YENİ ÜRÜN": ["Sezonun Yeni Ürünü"]
+"VIORA": [ "Viora İçecek Çeşitleri" ],
+"YENİ ÜRÜN": [ "Sezonun Yeni Ürünü" ]
 };
 
 window.addEventListener('popstate', (event) => {
@@ -559,7 +578,7 @@ renderBrandContent(name);
 function renderBrandContent(name){
 document.getElementById("homeContainer").style.display="none";
 document.getElementById("productPage").style.display="block";
-document.getElementById("brandTitle").innerHTML = name + " Ürünleri";
+document.getElementById("brandTitle").innerHTML = name;
 
 let html='<div class="productGrid">';
 if(brands[name]){
@@ -567,10 +586,17 @@ brands[name].forEach(function(x){
 let pName = typeof x === 'object' ? x.name : x;
 let pImg = typeof x === 'object' && x.image ? x.image : 'https://raw.githubusercontent.com/SORGUN-CALISKANOGULLARI/sorgun-toptan/refs/heads/main/yeni_urun.webp';
 
+if(typeof x === 'object' && x.isCategory) {
+html+=`<div class="productCell" onclick="openBrand('${x.isCategory}')" style="cursor:pointer;">
+<img src="${pImg}">
+<div class="pName" style="white-space: pre-line; background:#1c2430; color:white;">${pName}</div>
+</div>`;
+} else {
 html+=`<div class="productCell">
 <img src="${pImg}">
 <div class="pName" style="white-space: pre-line;">${pName}</div>
 </div>`;
+}
 });
 }else{
 html="<h3 style='color:#666;'>Bu markaya ürün eklenmedi.</h3>";
